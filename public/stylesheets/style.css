@@ -1,0 +1,30 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+input{
+  height: 30px !important;
+}
+select{
+  height: 30px !important;
+}
+.row-fluid{
+  margin-top: 5px ;
+  margin-bottom: 5px ;
+  padding-bottom: 10px;
+}
+.content-center{
+  width:300px;
+  background: #ccc;
+  margin: auto;
+}
+.body-login{
+  text-align: center;
+  background: #777;
+  margin: auto;
+}

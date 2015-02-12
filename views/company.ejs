@@ -1,0 +1,261 @@
+<html>
+  <head>
+    <title>Company Manage</title>
+    <link rel="stylesheet" type="text/css" href="/bui/css/bs3/bui-min.css">
+    <link rel="stylesheet" type="text/css" href="/bui/css/bs3/dpl-min.css">
+    <link rel='stylesheet' type="text/css" href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <div><%=user.userName%></div>
+    <div class="row-fluid">
+      <div class="span24">
+        <ul class="toolbar">
+          <li><button id="btn_add_company" class="button button-primary">Add Company</button></li>
+          <li><button id="btn_add_user" class="button button-primary">Add User</button></li>
+          <li><button id="btn_add_customer" class="button button-primary">Add Customer</button></li>
+          <li><button id="btn_logout" class="button button-primary">logout</button></li>
+        </ul>
+      </div>
+    </div>
+    <div class="row-fluid">
+      <div class="span" id="treeCompany"></div>
+      <div class="span15" >
+        <div id='grid'></div>
+      </div>
+    </div>
+  </body>
+</html>
+
+
+<div id="dialog_add_company" class="hide">
+  <form id="form_add_company" class="form-horizontal">
+    <div class="row">
+      <div class="control-group span15">
+        <label class="control-label">公司名称：</label>
+        <div class="controls "> <input name="name" class="input-large" type="text"> </div> </div>
+    </div>
+    <div class="row">
+      <div class="control-group span15">
+        <label class="control-label">所属公司：</label>
+        <div class="controls "> <input id="parentCompany"  class="input-large" type="text"> </div> </div>
+    </div>
+    <div class="row">
+      <div class="control-group span15">
+        <label class="control-label">备注：</label>
+        <div class="controls ">
+          <textarea name="remark" class="input-large" type="text"></textarea>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div id="dialog_add_user" class="hide">
+  <form id="form_add_user" class="form-horizontal">
+    <div class="row-fluid">
+      <div class="span8">
+        <span class="span7">员工帐号:</span>
+        <span class="span14">
+          <input type="text" name="userId" class="span22">
+        </span>
+      </div>
+      <div class="span8">
+        <span class="span8">密码:</span>
+        <span class="span14">
+          <input type="text" name="password" class="span22">
+        </span>
+      </div>
+      <div class="span7">
+        <span class="span8">姓名:</span>
+        <span class="span14">
+          <input type="text" name="userName" class="span22">
+        </span>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="span8">
+        <span class="span7">员工类型:</span>
+        <span class="span14">
+          <input type="text" name="userType" class="span22">
+        </span>
+      </div>
+      <div class="span8">
+        <span class="span8">所属公司:</span>
+        <span class="span14">
+          <input type="text" id="input_companyId" class="span22">
+        </span>
+      </div>
+      <div class="span7">
+        <span class="span8">是否有效:</span>
+        <span class="span14">
+          <select name="effective"  class="input-span-lg span22">
+            <option value='true'>是</option>
+            <option value="false">否</option>
+          </select>
+        </span>
+      </div>
+    </div>
+
+  </form>
+</div>
+
+<div id="dialog_add_customer" class="hide">
+  <form id="form_add_customer" class="form-horizontal">
+    <div class="row-fluid">
+      <div class="span8">
+        <span class="span7">客户姓名:</span>
+        <span class="span14">
+          <input type="text" name="customerName" class="span22">
+        </span>
+      </div>
+      <div class="span8">
+        <span class="span8">资金量:</span>
+        <span class="span14">
+          <input type="text" name="money" class="span22">
+        </span>
+      </div>
+      <div class="span7">
+        <span class="span8">客户类型:</span>
+        <span class="span14">
+          <select name="customerType"  class="input-span-lg span22">
+            <option value='1'>准客户</option>
+            <option value='2'>沟通潜力客户</option>
+            <option value='3'>一般客户</option>
+            <option value='4'>未有兴趣</option>
+            <option value='5'>本地化客户</option>
+            <option value='6'>黑名单</option>
+          </select>
+        </span>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="span6">
+        <span class="span7">性别:</span>
+        <span class="span14">
+          <input type="text" name="sex" class="span22">
+        </span>
+      </div>
+      <div class="span6">
+        <span class="span8">生日:</span>
+        <span class="span14">
+          <input type="text" name="birthday" class="span22">
+        </span>
+      </div>
+      <div class="span6">
+        <span class="span8">省份:</span>
+        <span class="span14">
+          <input type="text" name="provinceName" class="span22">
+        </span>
+      </div>
+      <div class="span6">
+        <span class="span8">城市:</span>
+        <span class="span14">
+          <input type="text" name="cityName" class="span22">
+        </span>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="span6">
+        <span class="span7">手机:</span>
+        <span class="span14">
+          <input type="text" name="cellPhone" class="span22">
+        </span>
+      </div>
+      <div class="span6">
+        <span class="span8">电话:</span>
+        <span class="span14">
+          <input type="text" name="phone" class="span22">
+        </span>
+      </div>
+      <div class="span6">
+        <span class="span8">QQ号:</span>
+        <span class="span14">
+          <input type="text" name="qqNumber" class="span22">
+        </span>
+      </div>
+      <div class="span6">
+        <span class="span8">昵称:</span>
+        <span class="span14">
+          <input type="text" name="nickname" class="span22">
+        </span>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="span12">
+        <span class="span7">身份证:</span>
+        <span class="span14">
+          <input type="text" name="idCard" class="span22">
+        </span>
+      </div>
+      <div class="span12">
+        <span class="span8">地址:</span>
+        <span class="span14">
+          <input type="text" name="address" class="span22">
+        </span>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="span24">
+        <span class="span3">备注:</span>
+        <span class="span21">
+          <input type="text" name="remark" class="span22">
+        </span>
+      </div>
+    </div>
+
+  </form>
+</div>
+
+
+<div id="dialog_add_trace_record" class="hide">
+  <form id="form_add_trace_record" class="form-horizontal">
+    <input type="hidden" name="customerId" data-view="customerId">
+    <div class="row-fluid">
+      <div class="span8">
+        <span class="span7">客户姓名:</span>
+        <span class="span14">
+          <label data-view="customerName"></label>
+        </span>
+      </div>
+      <div class="span8">
+        <span class="span8">资金量:</span>
+        <span class="span14">
+          <label data-view="money"></label>
+        </span>
+      </div>
+      <div class="span7">
+        <span class="span8">客户类型:</span>
+        <span class="span14">
+          <label data-view="customerTypeString"></label>
+        </span>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="span24">
+        <span class="span3">跟踪内容:</span>
+        <span class="span14">
+          <textarea name="traceContent" style="width:560px"></textarea>
+        </span>
+      </div>
+    </div>
+
+  </form>
+</div>
+
+
+<div id="dialog_grid_trace_record" class="hide">
+  <div id="grid_trace_record"></div>
+</div>
+
+<script type="text/javascript" src="/javascripts/jquery-1.8.1.min.js"></script>
+<script type="text/javascript" src="/bui/seed-min.js"></script>
+<script type="text/javascript" src="/javascripts//main.js"></script>
+<script type="text/javascript" src="/javascripts//global.js"></script>
+<script type="text/javascript" src="/javascripts//autocomplete.js"></script>
+<script type="text/javascript" src="/javascripts/assets/company.js"></script>
