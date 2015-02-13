@@ -1,0 +1,935 @@
+
+/*通用：价目管理-搜索区-表单的自适应宽度*/
+.input-adapt-width{
+    width: 96% !important;
+}
+.date-adapt-width{
+    width: 40% !important;
+	max-width: 98px !important;
+}
+.date2-adapt-width{
+    width: 32% !important;
+    max-width: 98px !important;
+}
+.area-adapt-width{
+    width: 22% !important;
+    max-width: 66px;
+}
+.input2-adapt-width{
+    width: 66.5% !important;
+    max-width: 200px;
+}
+.textArea-adapt-width{
+    width: 100% !important;
+    height: 85px;
+}
+.textArea2-adapt-width{
+    min-width: 82% !important;
+    height: 85px;
+}
+.checkbox-adapt-width{
+    width: 75px !important;
+    margin-right: 10px;
+    display: inline-block;
+}
+.bMar40{
+    margin-bottom: 40px;
+    overflow-x: hidden;
+}
+/* RestaurantTaste page*/
+.reta-content-show{
+    margin:20px 0 0 0;
+}
+.reta-table-wrap{
+    margin:20px 0 0 0;
+}
+.reta-table-wrap {
+    margin: 10px 0 0;
+}
+.taste-txt{
+	width:30% !important;
+}
+.mar-left-none{
+    margin-left:0 !important;
+}
+/* 富文本编辑器kindeditor 自定义插件图标样式 */
+.ke-icon-SelectImg {
+    background-image: url(../../../assets/global/plugins/kindeditor-master/themes/default/default.png);
+    background-position: 0px -496px;
+    width: 16px;
+    height: 16px;
+}
+.ke-icon-SelectVideo {
+    background-image: url(../../../assets/global/plugins/kindeditor-master/themes/default/default.png);
+    background-position: 0px -528px;
+    width: 16px;
+    height: 16px;
+}
+.ke-icon-SelectAudio {
+    background-image: url(../../../assets/global/plugins/kindeditor-master/themes/default/default.png);
+    background-position: 0px -512px;
+    width: 16px;
+    height: 16px;
+}
+.ke-icon-UploadMedia {
+    background-image: url(../../../assets/global/plugins/kindeditor-master/themes/default/default.png);
+    background-position: 0px -1040px;
+    width: 16px;
+    height: 16px;
+}
+/* zoonManage page */
+.panel-title{
+    padding: 0 !important;
+    position: fixed;
+    z-index: 999;
+    background-color: #ddd;
+}
+.panel-content{
+    padding: 3px 10px 3px 5px;
+    border-top: 1px solid #ddd;
+    margin-top: 31px;
+}
+.grid-seacher-label {
+    display: inline-block;
+    text-align: right;
+    width: 48px;
+}
+.bui-tab-panel-item.bui-tab-item {
+    cursor: pointer;
+}
+.dialog-label{
+    min-width: 60px;
+    display: inline-block;
+    text-align: left;
+}
+.dialog-input{
+    width: 60% !important;
+}
+/*接送团地址*/
+.teamchk{
+    float:left;
+    margin:3px;
+}
+.teamtxt{
+    display:inline-block;
+}
+.mar-top{
+    margin-top:5px;
+    font-size:12px;
+}
+/*自由行分类*/
+.button-bg1{
+    background:#35c147;
+    color:#FFF;
+}
+.button-bg2{
+    background:#555;
+    color:#FFF;
+}
+.button-bg3{
+    background:#f00;
+    color:#FFF;
+}
+.button-bg4{
+    background:#aaa;
+    color:#FFF;
+}
+li.free-nav-btn .button{
+    padding-left:7px !important;
+    padding-right:7px !important;
+    font-size:12px;
+}
+@media screen and (max-width: 1024px) {
+li.free-nav-btn{
+    width: 12.368% !important;
+}
+}
+.nav-small{
+    margin-left:-26px !important;
+}
+
+.tr-text{
+    width: 276px;
+    border:1px #DDD solid;
+}
+.tr-bar{
+    margin:10px 15px 0;
+}
+.tr-bar .line-span-txt{
+    display:inline;
+    margin-left: 1px;
+    margin-right:5px;
+}
+.color-red{
+    color:#f00;
+    font-weight:bold;
+    font-size:16px;
+    display:inline-block;
+    margin-top:4px;
+}
+/*产品 public css*/
+.content-head-fixed{
+    position:fixed;
+    width:90%;
+    top:68px;
+    background:#FFF;
+}
+
+/*产品-酒店*/
+.hotel-mar-top{
+    margin-top:23px;
+}
+.city-des{
+    display:inline-block;
+    margin-right:13px;
+    width:25%;
+}
+.hol-des{
+    display:inline-block;
+    margin-right:13px;
+    width:16%;
+}
+.span-bar-hol{
+     margin-left:15px !important; 
+}
+.list-hide{
+    position:relative;
+}
+.list-hide-nocheck{
+    position:relative;
+}
+.column-hide{
+    border: 1px solid #ddd;
+    top: 28px;
+    position: absolute;
+    left:-92px;
+    z-index:101;
+    padding:8px 0;
+    background:#FFF;
+}
+.column-hide li .button{
+    padding: 1px 8px !important;
+}
+.btn-list-hide{
+    border-radius:0 !important;
+    position:relative;
+    z-index:102;
+    background:#FFF;
+    border-color: #ddd !important;
+}
+
+.btn-list-hide-nocheck{
+    border-radius:0 !important;
+    position:relative;
+    z-index:102;
+    background:#FFF;
+    border-color: #ddd !important;
+}
+
+.column-hide li{
+    margin:3px 10px 7px;
+}
+.column-hide li .span12{
+    margin-left:0;
+}
+.column-hide li.f-li{
+    margin-top:15px;
+}
+.column-hide li.col-btm{
+    margin-top: 20px;
+    text-align: center;
+}
+.column-hide li input[type="text"]{
+    padding:2px;
+    color:#666;
+    text-indent:2px;
+    width:80%;
+}
+.price-column{
+    left: -163px;
+}
+.col-txt{
+    text-align:center;
+    margin-left:5px;
+    float:left;
+}
+.col-txt a{
+    color: #444;
+    display: inline-block;
+    float: right;
+    height: 18px;
+    margin-right: 5px;
+    text-align: center;
+    text-decoration: none;
+}
+.col-txt .fl-none{
+    float: none;
+    margin-left: 12px;
+}
+.col-chk{
+   float: left;
+    margin-left: -8px;
+    margin-right: 5px;
+    margin-top: 3px;
+}
+.col-cv{
+    margin-top:4px;
+}
+.tree-conn{
+    margin-top:10px;
+    border-top:0 !important;
+    margin-left:-16px;
+}
+.tab-head{
+    margin-left:-16px;
+}
+.mar-top1{
+    margin-top:10px;
+}
+.pro-hol-input{
+    float:left;
+    display:inline-block;
+    margin-right:2px;
+    margin-top:3px;
+}
+.bar-radio{
+    display:inline-block;
+    margin-right:2px;
+    margin-top:3px;
+}
+.pro-hol-txt-box{
+    border: 1px solid #ddd;
+    display: inline-block;
+    height: 100px;
+    margin-left: 8px;
+    width: 71.7%;
+}
+.magnifiter{
+    padding:0;
+    margin:0;
+    list-style:none;
+}
+a.btn-out-upload{
+    font-size: 12px;
+    line-height: 24px;
+    margin-top: 3px;
+    padding: 0 4px;
+}
+a.btn-in-upload{
+    font-size: 12px;
+    line-height: 24px;
+    margin-top: 3px;
+    padding: 0 4px;
+}
+.pro-editor-txt{
+    display: inline-block;
+    width: 76px;
+}
+.hol-grid-show .bui-grid-body{
+    max-height:200px !important;
+}
+/*酒店详情*/
+.hotel-detail-show{
+    margin:10px 3px 10px 5px;
+    border:1px #DDD solid;
+}
+.detail-content{
+    margin:0 auto;
+    width:980px;
+}
+.detail-conn-inner{
+   margin-left: 8px !important;
+   margin-bottom:40px;
+}
+.hol-bor-mar{
+    border:1px #ddd solid;
+    margin-left:2px;
+    padding-bottom:20px;
+}
+.detail-bar{
+    margin-top: 20px !important;
+}
+.detail-bar span{
+    font-size: 12px;
+}
+.detail-bar .span{
+    font-size: 12px;
+    margin-right:5px;
+}
+.panel-success > .panel-header {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #444 !important;
+    padding-left:8px;
+}
+.detail-panel{
+    margin-bottom:0 !important;
+}
+.detail-panel-bar{
+     background-color: #dff0d8;
+}
+.pro-l-txt{
+    float:left;
+    margin-top: 29px;
+}
+.pro-hol-select{
+    width: 22% !important;
+    margin-right: 5px;
+}
+.input-read{
+    border:0 !important
+}
+.exp-txt-box{
+    color: #555;
+    display: inline-block;
+    font-size: 13px;
+    line-height: 24px;
+    margin-top: 28px;
+}
+.jquery-lightbox-overlay {
+    background:#000000;
+    opacity:0.3 !important;
+}
+.jquery-lightbox {
+    background:#fff;
+    padding: 17px 0;
+    position: relative;
+}
+.jquery-lightbox {
+    background-clip: padding-box;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+    outline: 0 none;
+    position: absolute;
+    z-index: 1070;
+}
+.jquery-lightbox-button-close {
+
+}
+.jquery-lightbox-title{
+    opacity:0.6;
+    filter:alpha(opacity=60);
+}
+.jquery-lightbox-border-top-left,
+.jquery-lightbox-border-top-middle,
+.jquery-lightbox-border-top-right,
+.jquery-lightbox-border-bottom-left,
+.jquery-lightbox-border-bottom-middle,
+.jquery-lightbox-border-bottom-right,
+.jquery-lightbox-html {
+    display:none !important;
+}
+.jquery-lightbox-buttons .jquery-lightbox-button-right{
+    position: relative;
+    right: -348px;
+    top: 135px;
+}
+.jquery-lightbox-buttons .jquery-lightbox-button-left{
+    position: relative;
+    top: 135px;
+    left: 5px;
+}
+.jquery-lightbox-buttons .jquery-lightbox-buttons-init,
+.jquery-lightbox-buttons .jquery-lightbox-buttons-end{
+   display: none !important;
+}
+.pro-pic-show{
+    overflow:hidden;
+    padding:0;
+    border: 1px solid #ddd;
+    display: block;
+    height: 100px;
+    margin-left: 8px;
+    width: 635px;
+    position:relative;
+}
+/*--材料图片div--*/
+.pro-pic-show-material{
+    overflow:hidden;
+    padding:0;
+    border: 1px solid #ddd;
+    display: block;
+    height: 100px;
+    margin-left: 8px;
+    position:relative;
+}
+/*--签证附件div--*/
+.pro-pic-show-visa{
+    overflow:hidden;
+    padding:0;
+    border: 1px solid #ddd;
+    display: block;
+    height: 100px;
+    width:75%;
+    margin-left: 8px;
+    position:relative;
+}
+.pic-wrap{
+    display: block;
+    float:left;
+    padding:0;
+    height: 100px;
+    margin-left: 4px;
+    left:0;
+    top:0;
+}
+.pro-pic-con{
+    position:absolute;
+    left:0;
+}
+.pro-line-textera{
+    height:59px !important;
+}
+.pro-pic-show a.prev{
+    border: 1px solid #000;
+    background:#000;
+    display: inline-block;
+    height: 30px;
+    left: 6px;
+    position: absolute;
+    top: 35px;
+    width: 29px;
+    opacity:0.6;
+    cursor:pointer;
+}
+.pro-pic-show a.next{
+    border: 1px solid #000;
+    background:#000;
+    display: inline-block;
+    height: 30px;
+    right: 8px;
+    position: absolute;
+    top: 35px;
+    width: 29px;
+    opacity:0.6;
+    cursor:pointer;
+}
+.btn-del-pic{
+    position: absolute;
+    right: 2px;
+    top: 3px;
+}
+.pro-pic-show a.prev i{
+    margin-top:3px;
+}
+.pro-pic-show a.next i{
+    margin-top:3px;
+    margin-left:10px;
+}
+.pic-wrap .pic-pannel{
+    position:relative;
+    border: 1px solid #ddd;
+    float: left;
+    height: 90px;
+    list-style: none outside none;
+    margin: 5px 3px 0 0;
+    overflow: hidden;
+    padding: 0;
+    width: 100px !important;
+}
+.pro-pic-in{
+     height: 60px !important;
+     width:356px;
+}
+.pro-pic-in a.prev,a.next{
+    top:18px;
+}
+.pro-pic-in a.next{
+    top:18px;
+}
+.pic-in{
+    height: 60px;
+    width:350px;
+}
+.pic-in .pic-pannel{
+   height: 54px;
+   width: 52px !important;
+}
+.pic-pannel a{
+    cursor:pointer;
+}
+.hol-grid-show{
+    overflow-y:hidden;
+}
+/*信用卡类型*/
+.CreditCard-seacher-label{
+    display: inline-block;
+    text-align: right;
+    width: 60px;
+}
+/*景区*/
+.input-small.searcher-address{
+    width: 18% !important;
+    margin-right: 10px;
+}
+.searcher-input{
+    width: 67% !important;
+}
+.product-editor{
+    padding-left: 15%;
+    margin-bottom: 45px;
+    /*padding-right: 10%;*/
+}
+.product-editor .row-fluid{
+    margin-top: 5px;
+}
+.product-editor-label{
+    display: inline-block;
+    width: 84px;
+}
+.product-editor-select{
+    width: 18% !important;
+    margin-right: 10px;
+}
+.product-editor-checkboxs{
+    margin-right: 35px;
+    margin-left: 1%;
+}
+.product-editor-img{
+    display: inline-block;
+    width: 300px;
+    height: 200px;
+    border: 1px solid #DDD;
+    margin-left: 1%;
+}
+.product-editor-input{
+    height: 20px;
+    min-height: 20px;
+    min-width: 60%;
+}
+span.product-editor-input{
+    width: 72.5%;
+    height: 35px;
+    border: 1px solid #DDD;
+    display: inline-block;
+    margin-left: 8px;
+    overflow:auto;
+    word-wrap:break-word;
+}
+textarea.product-editor-input{
+    height: 20px;
+    min-height: 20px;
+    min-width: 68.5%;
+    margin-left: 1%;
+}
+textarea.product-editor-input40{
+    height: 40px;
+    min-height: 20px;
+    min-width: 68.5%;
+    margin-left: 1%;
+}
+span.product-editor-input40{
+    width: 72.5%;
+    height: 60px;
+    border: 1px solid #DDD;
+    display: inline-block;
+    margin-left: 8px;
+    overflow:auto;
+    word-wrap:break-word;
+}
+.product-editor-show{
+    width: 72.5%;
+    height: 100px;
+    border: 1px solid #DDD;
+    display: inline-block;
+    margin-left: 8px;
+}
+.pro-edi-txt-in{
+    border: 1px solid #ddd;
+    display: inline-block;
+    height: 75px;
+    margin-left: 8px;
+    width: 311px;
+}
+.product-dialog-checkboxs{
+    margin-right: 25px;
+    margin-left: 2px;
+}
+.product-dialog-show{
+    width: 99%;
+    height: 100px;
+    border: 1px solid #ddd;
+    display: inline-block;
+    margin-left: 2px;
+}
+.product-dialog-input{
+    width: 89% !important;
+}
+.product-dialog-area{
+    width: 99% !important;
+    margin-left: 2px;
+}
+.product-btn-upload{
+    margin-left: 3%;
+}
+/*bui-grid-child*/
+.bui-grid-child .bui-grid-table .bui-grid-cell{
+    border-left: 1px solid #ddd !important;
+}
+.bui-grid-child .bui-grid-table .bui-grid-hd{
+    border-left: 1px solid #ddd !important;
+}
+.inner-grid thead tr{
+    background:#add3ad;
+}
+.inner-grid tbody tr{
+    background:#f3faf4 !important;
+}
+.custom-dialog{
+    padding: 8px 5px;
+    min-width:325px;
+    max-width:395px;
+}
+.cus-dailog-left{
+    left:-170px !important;  /*for ie8*/
+}
+.cus-dailog-left3{
+    left:10px\9 !important;  /*for ie8*/
+}
+.cus-dailog-left1{
+    left:120px\9 !important;  /*for ie8*/
+}
+/*一行显示*/
+.custom-white-space{
+    white-space:nowrap;
+}
+.custom-white-space .bui-form-group{
+    white-space:normal;
+}
+/*隐藏滚动条*/
+.custom-overflow{
+    overflow:hidden;
+}
+/*导游备注textarea*/
+.custom-textarea{
+    height:30px;
+    width: 430px;
+}
+/*红色*/
+.red-color{
+    color : red;
+}
+/*签证成本价目样式start*/
+.noxscorll{
+	overflow-x:hidden; 
+}
+.left25{
+	left: -25%;
+}
+.left30{
+	left: 30%;
+}
+.left35{
+	left: 35%;
+}
+.left28{
+    left: 28%;
+}
+.max-span{
+    max-width: 280px;
+}
+.label-max-span4{
+    max-width: 60px;
+}
+.label-max-span2{
+    max-width: 35px;
+}
+.paddingtop{
+	padding-top: 2px;
+}
+/*签证成本价目样式end*/
+.custom-relative .custom-dialog{
+    position: absolute;
+    right:0;
+}
+/* 价目表-线路*/
+.added-c-pos .custom-dialog{
+    left:-123px;
+}
+.no-mar-left{
+    margin-left:0 !important;
+    float:left;
+}
+.prefer-way-bar{
+    width:81% !important;
+}
+.date-txt{
+    width:110px;
+}
+.custom-dialog6,.custom-dialog5{
+    width:400px;
+}
+/*餐厅成本报价*/
+.editor-dialog-btnGroup{
+    display: inline-block;
+    position: relative;
+    left: 30%;
+}
+.everyWeek-checkbox-label{
+    margin-right: 10px;
+}
+.everyDate-checkbox-label{
+    margin-right: 1px;
+}
+/*航班成本报价*/
+.overflow-hide{
+	height: 100%;
+    overflow: hidden !important;
+}
+.white-space-nowrap{
+    white-space:nowrap;
+}
+/*用车成本报价*/
+.x-flow-hide{
+    overflow-x: hidden;
+}
+.y-flow-auto{
+    overflow-y: auto;
+}
+/*top距离*/
+.top10{
+    margin-top: 10px;
+}
+/*服务费用dialog*/
+.service-width{
+    width : auto;
+    min-width: 300px;
+}
+
+.bg-white{
+    background-color: #fff;
+    color: #000;
+}
+.pad-right{
+    padding-right: 20px;
+}
+.guide-head-upload{
+    display: inline-block;
+    height: 100px;
+    border: 1px solid #DDD;
+    text-align:center;
+}
+.auto-center{
+	margin-top: 25%;
+}
+span.product-editor-show{
+    width: 72.5%;
+    height: 100px;
+    border: 1px solid #DDD;
+    display: inline-block;
+    margin-left: 8px;
+    overflow:auto;
+    word-wrap:break-word;
+}
+
+.product-editor-show-credit{
+    height: 100px;
+    border: 1px solid #DDD;
+    display: inline-block;
+    margin-left: 8px;
+    overflow:auto;
+    word-wrap:break-word;
+}
+.area-height{
+	height:60px;
+}
+.customer-tab{
+	margin-left:20px;
+}
+.pro-document-show{
+    padding:0;
+    border: 1px solid #ddd;
+    display: block;
+    height: 50px;
+    margin-left: 8px;
+    position:relative;
+}
+.pro-document-show2{
+    padding:0;
+    border: 1px solid #ddd;
+    display: block;
+    height: 110px;
+    margin-left: 8px;
+    position:relative;
+}
+/*联系人弹窗*/
+.select_contract_dialog{
+    z-index:1071;
+}
+.text-overflow {
+display:block;/*内联对象需加*/
+word-break:keep-all;/* 不换行 */
+white-space:nowrap;/* 不换行 */
+overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+}
+
+.dialog-grid-max-height .bui-grid-width .bui-grid-body {
+    max-height: 250px;
+    overflow-y: auto;
+}
+.dialog-grid-max-height2 .bui-grid-width .bui-grid-body {
+    max-height: 200px;
+    overflow-y: auto;
+}
+/*成本酒店*/
+.custom-dialog2-room{
+    padding:0 9px;
+}
+.cus-dlog-left4{
+     left:-160px !important;
+}
+.cus-dlog-left3{
+     left:40px !important;
+}
+.custom-dialog4-room{
+    left:-150px\9 !important;
+}
+.select_contract_dialog .bui-dialog{
+    z-index:1072 !important;
+}
+.service-chk{
+    margin-left:-7px !important;
+}
+/*产品资料线路，自由行*/
+.span-txt1{
+    width:50px;
+}
+.span-txt2{
+    width:62px;
+}
+.select-width1{
+    width:43%;
+}
+.btn-team-addr{
+    margin:3px 0 0 23px;
+}
+.btn-team-bar-exp{
+    width:11.5%;
+}
+.con-tr{
+    margin-top:5px;
+    display:table;
+}
+.dlog-inner-status{
+    margin-top: 9px;
+}
+.pro-line-inner-grid .bui-grid-body{
+  max-height:207px;
+  overflow-y:auto;
+}
+.left0 [class*="span"]{
+    margin-left: 0px;
+}
+.line-bread{
+    width:21%;
+}
+.line-txt-num{
+    width:28px !important;
+}
+
+#Travel-grid .bui-grid-body{
+    overflow-x:auto; 
+}

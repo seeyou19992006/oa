@@ -1,0 +1,170 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>酒店类型</title>
+    <link rel="stylesheet" type="text/css" href="/bui/css/bs3/bui-min.css">
+    <link rel="stylesheet" type="text/css" href="/bui/css/bs3/dpl-min.css">
+    <link rel="stylesheet" type="text/css" href="/bui/css/layout-min.css">
+    <!-- <link rel='stylesheet' type="text/css" href='/stylesheets/style.css' /> -->
+    <link rel='stylesheet' type="text/css" href='/stylesheets/common.css' />
+    <link rel='stylesheet' type="text/css" href='/stylesheets/pages.css' />
+  </head>
+  <body>
+    <div class="header">
+      <div class="home-logo-bg"></div>
+      <div class="header-nav-right">
+        <ul>
+          <li>当前用户:<span>user1</span></li>
+          <li><span class="exit">退出</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="wrapper">
+      <div class="slide-nav-wrap">
+        <div id="slide-nav"></div>
+        <span class="x-collapsed-btn x-collapsed-west"></span>
+      </div>
+      <div class="container-content-wrap">
+        <div class="content-wrap">
+          <div class="content-head">
+            <!-- <div class="breadcrumb row-fluid">
+              <ul class="span12">
+                <li><a href="#">基础资料</a><span class="divider"> >> </span></li>
+                <li class="active">酒店类型</li>
+              </ul>
+              <div class="span12">
+                <div class="status-pos">
+                  <span class="status status1">新增</span>
+                  <span class="status status2">启用</span>
+                  <span class="status status3">禁用</span>
+                </div>
+              </div>
+            </div> -->
+            <!-- <div class="row-fluid gril-btn border-grey">
+              <div class="span24">
+                <ul class="toolbar">
+                  <li>
+                    <button class="button button-primary btn-add">
+                    <span class="icon-plus icon-white"></span>新增(公共)
+                    </button>
+                  </li>
+                  <li>
+                    <button class="button button-success btn-start">
+                    <span class="icon-ok-circle icon-white"></span>启用(公共)
+                    </button>
+                  </li>
+                  <li>
+                    <button class="button button-warning btn-stop">
+                    <span class="icon-ban-circle icon-white"></span>禁用(公共)
+                    </button>
+                  </li>
+                  <li>
+                    <button class="button button-primary btn-add">
+                    <span class="icon-plus icon-white"></span>新增
+                    </button>
+                  </li>
+                  <li>
+                    <button class="button button-success btn-start">
+                    <span class="icon-ok-circle icon-white"></span>启用
+                    </button>
+                  </li>
+                  <li>
+                    <button class="button button-warning btn-stop">
+                    <span class="icon-ban-circle icon-white"></span>禁用
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div> -->
+            
+            <!-- <div class="row-fluid grid-seacher border-grey">
+              <form class="form-inline">
+                <div class="span5">
+                  <label>
+                    <span>酒店类型</span>
+                    <input type="text" class="input-small">
+                  </label>
+                </div>
+                <div class="span5">
+                  <label>
+                    <span>状态</span>
+                    <select>
+                      <option>请选择</option>
+                      <option>系统</option>
+                      <option>组织</option>
+                    </select>
+                  </label>
+                </div>
+                <div class="span5">
+                  <label>
+                    <span>数据来源</span>
+                    <select>
+                      <option>请选择</option>
+                      <option>系统</option>
+                      <option>组织</option>
+                    </select>
+                  </label>
+                </div>
+                <div class="span5">
+                  <button class="button button-primary"><span class="icon-search icon-white"></span>查找</button>
+                </div>
+              </form>
+            </div> -->
+          </div>
+          <div class="content-body">
+            <div class="row-fluid grid-list">
+              <div class="span24">
+                <div id="grid" style="min-width:1000px">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="content-foot">
+            <div class="page-bar-row">
+              <div class="span8">
+                <i>共<span>132454315</span>条</i>
+                <i>每页
+                <select>
+                  <option value="10">10</option>
+                  <option value="10">20</option>
+                  <option value="10">30</option>
+                </select>
+                条</i>
+              </div>
+              <div class="page-bar" id="page-bar"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="footer">
+      <p class="copyright">
+      Copyright &copy 深圳市云游天下科技有限公司 ICP粤审字92739429友情链接 帮助文档 版权说明 关于系统 关于我们 联系我们
+      </p>
+    </div> -->
+    <div id="dialog_content" class="hide">
+      <form class="form-horizontal">
+        <div class="row-fluid">
+          <div class="span24 txt-bar">
+            <span class="span6">酒店类型：</span>
+            <span class="span6"><input name="b" type="text" class=""></span>
+          </div>
+        </div>
+        <div class="row-fluid">
+          <div class="span24 txt-bar">
+            <span class="span6">备注：</span>
+            <span class="span6"><input name="c" type="text" class=""></span>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
+
+<script type="text/javascript" src="/javascripts/jquery-1.8.1.min.js"></script>
+<script type="text/javascript" src="/bui/seed-min.js"></script>
+<script type="text/javascript" src="/javascripts/main.js"></script>
+<script type="text/javascript" src="/javascripts/global.js"></script>
+<script type="text/javascript" src="/javascripts/autocomplete.js"></script>
+<script type="text/javascript" src="/javascripts/layout.js"></script>
+<script type="text/javascript" src="/javascripts/assets/HotelType.js"></script>
