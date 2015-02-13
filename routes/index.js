@@ -23,4 +23,10 @@ router.post('/login', function(req, res, next) {
   })
 });
 
+router.get('/logout', function(req, res, next) {
+  req.session.user = null;
+  req.flash('success', '退出成功');
+  res.redirect('/');
+});
+
 module.exports = router;

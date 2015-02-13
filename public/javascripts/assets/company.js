@@ -1,5 +1,7 @@
 BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],function(Overlay,Form,Tree,Data,Menu,Grid){
-
+  $("#btn_logout").click(function(){
+    window.location.href = '/logout'
+  });
   (function(){
     var dialogAddCompany = new Overlay.Dialog({
       title:'新增分公司',
@@ -55,7 +57,8 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
         autoLoad:false, //自动加载数据
         pageSize:10,  // 配置分页数目
         totalProperty:'total',
-        root:'data'
+        root:'data',
+        width:'250px'
       }),
       hiddenInputs:[
         {name:'companyId',property:'id'},

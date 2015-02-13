@@ -1,12 +1,15 @@
 var express = require('express');
 var router = express.Router();
 var CompanyModel = require('../models/company');
-var FindCompanyQueryParam = require('../params/findCompanyQueryParam');
-
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.render('company',{user:req.session.user});
 });
+
+router.get('/2', function(req, res, next) {
+  res.render('company2',{user:req.session.user});
+});
+
 
 router.post('/add',function(req,res,next) {
   var record = req.body;
@@ -26,8 +29,9 @@ router.get('/delete',function(req,res,next) {
 router.get('/find',function(req,res,next) {
   var query = new Query({
     param:{
-      this.name = new RegExp(req.query.name)
-    }
+      name:new RegExp(req.query.name),
+      path:new RegExp('^' + req.session.user.companyPath),
+    },
     model:CompanyModel,
     page:req.query
   });
