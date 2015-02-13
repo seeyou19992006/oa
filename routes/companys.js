@@ -30,7 +30,7 @@ router.get('/find',function(req,res,next) {
   var query = new Query({
     param:{
       name:new RegExp(req.query.name),
-      path:new RegExp('^' + req.session.user.companyPath),
+      //path:new RegExp('^' + req.session.user.companyPath),
     },
     model:CompanyModel,
     page:req.query
