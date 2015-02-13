@@ -26,7 +26,7 @@ router.get('/delete',function(req,res,next) {
 router.get('/find',function(req,res,next) {
   var query = new Query({
     param:{
-      this.name = new RegExp(req.query.name);
+      this.name = new RegExp(req.query.name)
     }
     model:CompanyModel,
     page:req.query
