@@ -25,7 +25,9 @@ router.get('/delete',function(req,res,next) {
 
 router.get('/find',function(req,res,next) {
   var query = new Query({
-    param:new FindCompanyQueryParam(req.query),
+    param:{
+      this.name = new RegExp(req.query.name);
+    }
     model:CompanyModel,
     page:req.query
   });
