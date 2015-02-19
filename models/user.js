@@ -5,7 +5,8 @@ var UserSchema = new mongoose.Schema({
   userType:String,
   companyId:String,
   effective:Boolean,
-  companyPath:String
+  companyPath:String,
+  role:Number
 })
 
 var UserModel = db.model('user',UserSchema);

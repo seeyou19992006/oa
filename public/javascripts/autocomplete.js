@@ -100,23 +100,17 @@
             divCSS:{'min-width':'200px'},
             keyProperty:'name',//关键字属性名
             required:false,//是否必填,如果是，则input框失去焦点时会选中第一条
-            realInputProperty:null,//deprecated 已被hiddenInputs替代 
-            //可以给input框指定一个隐藏input框，放入隐藏属性
-            //如原input框为<input name="id" data-self-name="name">
-            //如realInputProperty:"id",则会生成<input type="hidden" name="id" >
-            //并且会在赋值时自动将记录的id赋值到隐藏的input框中，在valueChanged时会自动清空value
-            //并且原input框name变为<input name="name">
           },o||{});
 
           var hiddenInputsMap ={} ;
           $(o.hiddenInputs).each(function(index,obj){
             var $hiddenInput = $('<input type="hidden">').insertAfter($input);
-            $hiddenInput.attr("name",obj.name);
-            if(obj.value){
-              $hiddenInput.attr("value",obj.value);
+            for(var i in obj){
+              if(i != 'property'){
+                $hiddenInput.attr(i,obj[i]);
+              }
             }
             hiddenInputsMap[obj.property] = $hiddenInput;
-
           })
           store = o.store;
           store.on('load',function(){
@@ -124,24 +118,6 @@
               store.setResult(JSON.parse(store.getResult()));
             }
           });
-          if(o.realInputProperty){
-            $realInput = $('<input type="hidden">').insertAfter($input);
-            var selfName = $input.data("self-name");
-            var hiddenName = $input.data("hidden-name");
-            
-            if(selfName){
-              $realInput.attr("name",$input.attr("name"));
-              $input.attr("name",selfName).removeAttr("data-self-name");
-            }else if(!hiddenName){
-              $realInput.attr("name",$input.attr("name"));
-              $input.removeAttr("name");
-            }
-            if(hiddenName){
-              $realInput.attr("name",hiddenName);
-            }else if(!selfName){
-            	$realInput.attr("name",o.realInputProperty);
-            }
-          }
           limit = store.get('pageSize');
           $div = $('<div  style="position:absolute;display:block;z-index:99999"></div>').appendTo($("body")).hide();
           $div.css(o.divCSS);

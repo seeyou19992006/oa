@@ -10,6 +10,11 @@ var Global = {
     4:'未有兴趣',
     5:'本地化客户',
     6:'黑名单',
+  },
+  role:{
+    0:'超级管理员',
+    1:'管理员',
+    2:'普通员工'
   }
 }
 
@@ -19,6 +24,9 @@ Global.sexRenderer = function(value,obj,index){
 Global.customerTypeRenderer = function(value,obj,index){
   return Global.customerType[value];
 }
+Global.roleRender = function(value,obj,index){
+  return Global.role[value];
+}
 
 Global.setEditValue = function(parent,record){
   $(parent).find('[data-view]').each(function(index,dom){
@@ -27,6 +35,8 @@ Global.setEditValue = function(parent,record){
     var fieldValue = record[field];
     if(fieldValue!=undefined){
       if(dom.tagName == 'INPUT'){
+        $dom.val(fieldValue);
+      }else if(dom.tagName == 'TEXTAREA'){
         $dom.val(fieldValue);
       }else{
         $dom.text(fieldValue);

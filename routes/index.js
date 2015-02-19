@@ -12,9 +12,9 @@ router.get('/test', function(req, res, next) {
 });
 
 router.post('/login', function(req, res, next) {
-  var loginUser = req.body
-  UserModel.findOne({userName:loginUser.userName},function(err,doc){
-    if(loginUser.password == doc.password){
+  var loginUser = req.body;
+  UserModel.findOne({userId:loginUser.userName},function(err,doc){
+    if(doc && loginUser.password == doc.password){
       req.session.user = doc;
       res.redirect('/companys');
     }else{

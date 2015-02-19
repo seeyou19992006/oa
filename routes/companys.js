@@ -18,19 +18,43 @@ router.post('/add',function(req,res,next) {
   res.send('add');
 })
 
-router.get('/update',function(req,res,next) {
-  res.send('update');
+router.post('/update',function(req,res,next) {
+  var condition = {
+    id:req.body.id
+  };
+  var update = {
+    $set:{
+      remark:req.body.remark
+    }
+  };
+  CompanyModel.update(condition,update,function(err,docs){
+    res.send('update success');
+  })
 })
 
-router.get('/delete',function(req,res,next) {
-  res.send('delete');
+router.post('/delete',function(req,res,next) {
+  if(req.body.path){
+    var obj = {path:new RegExp('^' + req.body.path)};
+    CompanyModel.find(obj,function(err,docs){
+      if(docs.length == 1){
+        CompanyModel.remove(obj,function(err,count){
+          res.send('delete success!');
+        })
+      }else{
+        res.send('delete faild!');
+      }
+      console.log(docs);
+    });
+  }else{
+    res.send('bad request!');
+  }
 })
 
 router.get('/find',function(req,res,next) {
   var query = new Query({
     param:{
       name:new RegExp(req.query.name),
-      //path:new RegExp('^' + req.session.user.companyPath),
+      path:new RegExp('^' + req.session.user.companyPath),
     },
     model:CompanyModel,
     page:req.query
