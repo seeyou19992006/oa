@@ -13,7 +13,7 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
           console.log(data);
           store.load();
           dialogAddUser.close();
-        });;
+        });
       }
     });
     var formAddUser = new Form.Form({
@@ -36,6 +36,29 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
         {name:'companyPath',property:'path'}
       ],
     });
+  })();
+
+  var dialogUpdateUser;
+  var formUpdateUser;
+  (function(){
+    dialogUpdateUser = new Overlay.Dialog({
+      title:'编辑员工',
+      contentId:'dialog_update_user',
+      width:600,
+      success:function(){
+        formUpdateUser.valid();
+        if(!formUpdateUser.isValid()) return;
+        var record = formUpdateUser.toObject();
+        $.post('/users/update/admin',record,function(data){
+          console.log(data);
+          store.load();
+          dialogUpdateUser.close();
+        });
+      }
+    });
+    formUpdateUser = new Form.Form({
+      srcNode:'#form_update_user'
+    }).render();
   })();
 
   var grid;
@@ -69,6 +92,27 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
     grid.render();
   })();
 
+  (function(){
+    grid.on('cellclick',function(e){
+      var record = e.record;
+      var target = $(e.domTarget);
+      if(target.hasClass('update')){
+        record.roleString = Global.roleRender(record.role);
+        record.effective +='';
+        Global.setEditValue('#form_update_user',record);
+        formUpdateUser.setRecord(record);
+        dialogUpdateUser.show();
+        return false;
+      }else if(target.hasClass('delete')){
+        BUI.Message.Confirm('确定要删除?',function(){
+          $.post('/users/delete/admin',{userId:record.userId},function(data){
+            store.load();
+          })       
+        })
+        return false;
+      }
+    })
+  })();
 
 
 

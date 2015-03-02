@@ -3,15 +3,19 @@ var router = express.Router();
 var UserModel = require('../models/user');
 /* GET users listing. */
 router.get('/admin', function(req, res, next) {
-  res.render('admin',{user:req.session.user});
+  res.render('admin',{user:req.session.user,company:req.session.company});
 });
 
 router.get('/user', function(req, res, next) {
-  // res.render('',{user:req.session.user});
+  res.render('user',{user:req.session.user,company:req.session.company});
 });
 
 router.post('/add/user',function(req,res,next) {
   var record = req.body;
+  if(record.role==0||record.role==1){
+    res.send("无权限!");
+    return;
+  }
   var entity = new UserModel(record);
   entity.save(function(err,result){
   });
@@ -19,11 +23,41 @@ router.post('/add/user',function(req,res,next) {
 })
 
 router.post('/update/user',function(req,res,next) {
-  res.send('update');
+  var condition = {
+    userId:req.body.userId
+  };
+  var update = {
+    $set:{
+      password:req.body.password,
+      userName:req.body.userName,
+      effective:req.body.effective
+    }
+  };
+  UserModel.findOne(condition,function(err,doc){
+    if(doc.companyId == req.session.user.companyId){
+      UserModel.update(condition,update,function(err,docs){
+        res.send('update success');
+      })
+    }else{
+      res.send('无权限!');
+    }
+  })
 })
 
 router.post('/delete/user',function(req,res,next) {
-  res.send('delete');
+  var condition = {
+    userId:req.body.userId
+  }
+  UserModel.findOne(condition,function(err,doc){
+    if(doc.companyId == req.session.user.companyId){
+      UserModel.remove(condition,function(err,count){
+        res.send('delete success')
+      })
+    }else{
+      res.send('无权限!');
+    }
+  })
+  
 })
 
 router.post('/add/admin',function(req,res,next) {
@@ -35,11 +69,28 @@ router.post('/add/admin',function(req,res,next) {
 })
 
 router.post('/update/admin',function(req,res,next) {
-  res.send('update');
+  var condition = {
+    userId:req.body.userId
+  };
+  var update = {
+    $set:{
+      password:req.body.password,
+      userName:req.body.userName,
+      effective:req.body.effective
+    }
+  };
+  UserModel.update(condition,update,function(err,docs){
+    res.send('update success');
+  })
 })
 
 router.post('/delete/admin',function(req,res,next) {
-  res.send('delete');
+  var obj = {
+    userId:req.body.userId
+  }
+  UserModel.remove(obj,function(err,count){
+    res.send('delete success')
+  })
 })
 
 router.get('/find',function(req,res,next) {

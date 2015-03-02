@@ -15,7 +15,7 @@
       <div class="left span3" style="height:100%">
         <ul class="clearfix" id="nav">
           <li><a href="/companys">分公司管理</a> </li>
-          <li><a href="/users/admin">管理人员管理</a> </li>
+          <li><a href="/users/admin">员工管理</a> </li>
           <li><a href="/info">统计信息</a> </li>
         </ul>
       </div>
@@ -84,6 +84,54 @@
         <span class="span8">所属公司:</span>
         <span class="span14">
           <input type="text" id="input_companyId" class="span22">
+        </span>
+      </div>
+      <div class="span7">
+        <span class="span8">是否有效:</span>
+        <span class="span14">
+          <select name="effective"  class="input-span-lg span22">
+            <option value='true'>是</option>
+            <option value="false">否</option>
+          </select>
+        </span>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div id="dialog_update_user" class="hide">
+  <form id="form_update_user" class="form-horizontal">
+    <input type="hidden" name="userId">
+    <div class="row-fluid">
+      <div class="span8">
+        <span class="span7">员工帐号:</span>
+        <span class="span14" data-view="userId">
+        </span>
+      </div>
+      <div class="span8">
+        <span class="span8">密码:</span>
+        <span class="span14">
+          <input type="text" name="password" class="span22">
+        </span>
+      </div>
+      <div class="span7">
+        <span class="span8">姓名:</span>
+        <span class="span14">
+          <input type="text" name="userName" class="span22">
+        </span>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="span8">
+        <span class="span7">员工类型:</span>
+        <span class="span14" data-view="roleString">
+        </span>
+      </div>
+      <div class="span8">
+        <span class="span8">所属公司:</span>
+        <span class="span14">
+          <!-- <input type="text" id="input_companyId" class="span22"> -->
         </span>
       </div>
       <div class="span7">

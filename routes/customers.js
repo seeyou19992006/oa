@@ -3,7 +3,7 @@ var router = express.Router();
 var CustomerModel = require('../models/customer');
 
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+  res.render('customer', {user:req.session.user});
 });
 
 router.post('/add',function(req,res,next) {
@@ -25,10 +25,16 @@ router.get('/delete',function(req,res,next) {
 })
 
 router.get('/find',function(req,res,next) {
+  var param = {
+    userId:req.session.user.userId,
+    customerName:new RegExp(req.query.customerName),
+    customerType:req.query.customerType,
+  }
+  if(!param.customerType){
+    delete param.customerType;
+  }
   var query = new Query({
-    param:{
-      userId:req.session.user.userId
-    },
+    param:param,
     model:CustomerModel,
     page:req.query
   })
