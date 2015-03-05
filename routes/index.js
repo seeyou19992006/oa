@@ -3,6 +3,7 @@ var router = express.Router();
 
 var UserModel = require('../models/user');
 var CompanyModel = require('../models/company');
+var TraceRecordModel = require('../models/traceRecord');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -35,6 +36,54 @@ router.post('/login', function(req, res, next) {
     }
   })
 });
+
+router.get('/statistics',function(req,res,next){
+  res.render('statistics',{user:req.session.user});
+})
+router.get('/statistics/company/find',function(req,res,next){
+  var query = new Query({
+    param:{
+      companyId:req.session.user.companyId,
+      // role:2
+    },
+    model:UserModel,
+    page:req.query,
+  })
+  query.query(function(err,result){
+    var userIds = [];
+    var userIdMap = {};
+    for(var i = 0;i<result.data.length;i++){
+      userIds.push(result.data[i].userId);
+      userIdMap[result.data[i].userId] = i;
+    }
+    TraceRecordModel.collection.group(
+      {userId:true},
+      {userId:{$in:userIds}},
+      {count:0},
+      function(obj,prev){
+        prev.count++;
+      },
+      function(err,data){
+        console.log(data);
+        console.log(userIds);
+        var returnResult = [];
+        for(var i = 0;i<result.data.length;i++){
+          returnResult.push(result.data[i].toObject());
+        }
+        for(var i =0 ; i< data.length;i ++){
+          var index = userIdMap[data[i].userId];
+          returnResult[index].count = data[i].count;
+        }
+        result.data = returnResult;
+        res.send(result);
+      }
+    );
+  });
+  // res.render('statistics',{user:req.session.user});
+})
+router.get('/statistics/user/find',function(req,res,next){
+  res.render('statistics',{user:req.session.user});
+})
 
 router.get('/logout', function(req, res, next) {
   req.session.user = null;

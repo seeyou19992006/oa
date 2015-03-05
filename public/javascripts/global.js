@@ -15,6 +15,10 @@ var Global = {
     0:'超级管理员',
     1:'管理员',
     2:'普通员工'
+  },
+  traceType:{
+    1:'电话跟踪',
+    2:'视频跟踪'
   }
 }
 
@@ -27,6 +31,10 @@ Global.customerTypeRenderer = function(value,obj,index){
 Global.roleRender = function(value,obj,index){
   return Global.role[value];
 }
+Global.traceTypeRenderer = function(value,obj,index){
+  return Global.traceType[value];
+}
+
 
 Global.setEditValue = function(parent,record){
   $(parent).find('[data-view]').each(function(index,dom){

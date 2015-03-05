@@ -69,11 +69,11 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
   var store;
   (function(){
     var columns = [
-      {title:'员工帐号',dataIndex:'userId',width:100},
-      {title:'姓名',dataIndex:'userName',width:100},
-      {title:'所属公司',dataIndex:'',width:100},
-      {title:'员工类型',dataIndex:'role',width:100,renderer:Global.roleRender},
-      {title:'操作',width:100,renderer:function(){
+      {title:'员工帐号',dataIndex:'userId',width:'20%'},
+      {title:'姓名',dataIndex:'userName',width:'20%'},
+      {title:'所属公司',dataIndex:'',width:'20%'},
+      {title:'员工类型',dataIndex:'role',width:'20%',renderer:Global.roleRender},
+      {title:'操作',width:'20%',renderer:function(){
         return '<button class="update button button-primary button-mini">编辑</button>'+
         '<button class="delete button button-primary button-mini">删除</button>';
       }}
@@ -91,7 +91,8 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
       store:store,
       bbar:{
         pagingBar:true
-      }
+      },
+      width:'100%'
     });
     grid.render();
   })();
