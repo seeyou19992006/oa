@@ -70,8 +70,8 @@
         <a href="/logout">退出</a>
       </div>
       <ul id="menu">
-        <li><a href="/users/user">员工管理</a> </li>
-        <li><a href="/info">统计信息</a> </li>
+        <li><a href="/users/user2">员工管理</a> </li>
+        <li><a href="/statistics">统计信息</a> </li>
       </ul>
     </div>
   </div>
@@ -79,20 +79,20 @@
     <div class="search-bar">
       <form id="form-search" class="form-horizontal">
          <div class="row">
-            <div class="control-group span8">
+            <div class="control-group span10">
               <label class="control-label">起始日期：</label>
               <div class="controls bui-form-group" data-rules="{dateRange : true}">
-                <input name="start" class="input-small calendar" type="text"><label>&nbsp;-&nbsp;</label>
-                <input name="end" class="input-small calendar" type="text">
+                <input name="traceTimeStart" class="span10 calendar" type="text"><label>&nbsp;-&nbsp;</label>
+                <input name="traceTimeEnd" class="span10 calendar" type="text">
               </div>
             </div>
             <div class="control-group span7">
               <label class="control-label">员工姓名：</label>
               <div class="controls">
-                <input type="text" name="c" class="control-text">
+                <input type="text" name="userName"  class="control-text">
               </div>
             </div>
-            <div class="form-actions span5">
+            <div class="form-actions span4">
               <button id="btnSearch" type="submit" class="button button-primary">搜索</button>
             </div>
           </div>

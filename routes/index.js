@@ -25,7 +25,7 @@ router.post('/login', function(req, res, next) {
             res.redirect('/companys');
             break;
           case 1:
-            res.redirect('/users/user');
+            res.redirect('/users/user2');
             break;
           case 2:
             res.redirect('/customers');
@@ -44,7 +44,8 @@ router.get('/statistics/company/find',function(req,res,next){
   var query = new Query({
     param:{
       companyId:req.session.user.companyId,
-      // role:2
+      role:2,
+      userName:new RegExp(req.query.userName)
     },
     model:UserModel,
     page:req.query,
@@ -56,9 +57,23 @@ router.get('/statistics/company/find',function(req,res,next){
       userIds.push(result.data[i].userId);
       userIdMap[result.data[i].userId] = i;
     }
+    var traceTimeParam = {};
+    if(req.query.traceTimeStart){
+      traceTimeParam.$gt = new Date(req.query.traceTimeStart);
+    }else{
+      traceTimeParam.$gt = new Date('2000-01-01');
+    }
+    if(req.query.traceTimeStart){
+      traceTimeParam.$lt = new Date(req.query.traceTimeEnd);
+    }else{
+      traceTimeParam.$lt = new Date('2999-12-31');
+    }
     TraceRecordModel.collection.group(
       {userId:true},
-      {userId:{$in:userIds}},
+      {
+        userId:{$in:userIds},
+        traceTime:traceTimeParam
+      },
       {count:0},
       function(obj,prev){
         prev.count++;

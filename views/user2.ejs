@@ -1,0 +1,216 @@
+<html>
+<head>
+  <title>statistics</title>
+  <link rel="stylesheet" type="text/css" href="/bui/css/bs3/bui-min.css">
+  <link rel="stylesheet" type="text/css" href="/bui/css/bs3/dpl-min.css">
+  <link rel='stylesheet' type="text/css" href='/stylesheets/style.css' />
+  <style type="text/css">
+  html,body{
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+  }
+  .header{
+    height: 100px;
+    background: #999;
+  }
+  body{
+    width: 1200px;
+    margin: auto;
+    background: #bbb;
+    min-width: 1000px;
+  }
+  .title{
+    font-size: 30px;
+    display: inline-block;
+    bottom: 0px;
+  }
+  .search-bar{
+    background-color: #fff;
+    border: 1px solid #e6e6e6;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.05);
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .form-horizontal{
+    margin-top: 5px;
+  }
+  #menu{
+    bottom: 0px;
+    position: relative;
+  }
+  #menu, #menu li {
+    height: 30px;
+    list-style:none; /* 将默认的列表符号去掉 */
+    padding:0; /* 将默认的内边距去掉 */
+    margin:0; /* 将默认的外边距去掉 */
+    float: left;
+    font-size: 20px;
+    border-left: 3px solid #999;
+    border-right: 3px solid #999;
+    background: #bbb;
+  }
+  #menu a {
+    text-decoration:none;
+  }
+  #user{
+    height: 70px;
+  }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div style="float:left;width:400px">
+      <img height='100%' src="/images/logo.png">
+      <label class="title">万和数据OA系统</label>
+    </div>
+    <div style="float:right;height:100px;">
+      <div id="user">
+        <span><%=user.userName%></span>
+        <a href="/logout">退出</a>
+      </div>
+      <ul id="menu">
+        <li><a href="/users/user2">员工管理</a> </li>
+        <li><a href="/statistics">统计信息</a> </li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="search-bar">
+      <form id="form-search" class="form-horizontal">
+         <div class="row">
+            <div class="control-group span7">
+              <label class="control-label">姓名</label>
+              <div class="controls">
+                <input type="text" name="userName"  class="control-text">
+              </div>
+            </div>
+            <div class="control-group span7">
+              <label class="control-label">工号</label>
+              <div class="controls">
+                <input type="text" name="userId"  class="control-text">
+              </div>
+            </div>
+            <div class="form-actions span4">
+              <button id="btnSearch" type="submit" class="button button-primary">搜索</button>
+            </div>
+            <ul class="toolbar " style="float:right">
+              <li><button  id="btn_add_user" class="button button-primary">+</button></li>
+            </ul>
+          </div>
+      </form>
+    </div>
+    <div class="">
+      <div id='grid'></div>
+    </div>
+  </div>
+</body>
+</html>
+
+<div id="dialog_add_user" class="hide">
+  <form id="form_add_user" class="form-horizontal">
+    <div class="row-fluid">
+      <div class="span8">
+        <span class="span7">员工帐号:</span>
+        <span class="span14">
+          <input type="text" name="userId" class="span22">
+        </span>
+      </div>
+      <div class="span8">
+        <span class="span8">密码:</span>
+        <span class="span14">
+          <input type="text" name="password" class="span22">
+        </span>
+      </div>
+      <div class="span7">
+        <span class="span8">姓名:</span>
+        <span class="span14">
+          <input type="text" name="userName" class="span22">
+        </span>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="span8">
+        <span class="span7">员工类型:</span>
+        <span class="span14">
+          <select name="role"  class="input-span-lg span22">
+            <!-- <option value='1'>管理员</option> -->
+            <option value="2">普通员工</option>
+          </select>
+        </span>
+      </div>
+      <div class="span8">
+        <span class="span8">所属公司:</span>
+        <span class="span14">
+          <input type="text" id="input_companyId" class="span22">
+        </span>
+      </div>
+      <div class="span7">
+        <span class="span8">是否有效:</span>
+        <span class="span14">
+          <select name="effective"  class="input-span-lg span22">
+            <option value='true'>是</option>
+            <option value="false">否</option>
+          </select>
+        </span>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div id="dialog_update_user" class="hide">
+  <form id="form_update_user" class="form-horizontal">
+    <input type="hidden" name="userId">
+    <div class="row-fluid">
+      <div class="span8">
+        <span class="span7">员工帐号:</span>
+        <span class="span14" data-view="userId">
+        </span>
+      </div>
+      <div class="span8">
+        <span class="span8">密码:</span>
+        <span class="span14">
+          <input type="text" name="password" class="span22">
+        </span>
+      </div>
+      <div class="span7">
+        <span class="span8">姓名:</span>
+        <span class="span14">
+          <input type="text" name="userName" class="span22">
+        </span>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="span8">
+        <span class="span7">员工类型:</span>
+        <span class="span14" data-view="roleString">
+        </span>
+      </div>
+      <div class="span8">
+        <span class="span8">所属公司:</span>
+        <span class="span14">
+          <!-- <input type="text" id="input_companyId" class="span22"> -->
+        </span>
+      </div>
+      <div class="span7">
+        <span class="span8">是否有效:</span>
+        <span class="span14">
+          <select name="effective"  class="input-span-lg span22">
+            <option value='true'>是</option>
+            <option value="false">否</option>
+          </select>
+        </span>
+      </div>
+    </div>
+  </form>
+</div>
+
+
+<script type="text/javascript" src="/javascripts/jquery-1.8.1.min.js"></script>
+<script type="text/javascript" src="/bui/seed-min.js"></script>
+<script type="text/javascript" src="/javascripts//main.js"></script>
+<script type="text/javascript" src="/javascripts//global.js"></script>
+<script type="text/javascript" src="/javascripts//autocomplete.js"></script>
+<script type="text/javascript" src="/javascripts/assets/user.js"></script>

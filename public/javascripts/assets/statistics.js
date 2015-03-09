@@ -7,10 +7,9 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
   var store;
   (function(){
     var columns = [
-      {title:'员工帐号',dataIndex:'userId',width:'20%'},
-      {title:'姓名',dataIndex:'userName',width:'20%'},
-      {title:'电话跟踪',dataIndex:'count',width:'20%'},
-      {title:'视频跟踪',dataIndex:'videoTraceCount',width:'20%'},
+      {title:'员工帐号',dataIndex:'userId',width:'30%'},
+      {title:'姓名',dataIndex:'userName',width:'30%'},
+      {title:'跟踪数',dataIndex:'count',width:'40%'},
     ];
     store = new Data.Store({
       url:'/statistics/company/find',

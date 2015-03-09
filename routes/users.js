@@ -10,6 +10,10 @@ router.get('/user', function(req, res, next) {
   res.render('user',{user:req.session.user,company:req.session.company});
 });
 
+router.get('/user2', function(req, res, next) {
+  res.render('user2',{user:req.session.user,company:req.session.company});
+});
+
 router.post('/add/user',function(req,res,next) {
   var record = req.body;
   if(record.role==0||record.role==1){
