@@ -3,7 +3,7 @@ var TraceRecordschema = new mongoose.Schema({
   userId:String,
   customerId:String,
   traceContent:String,
-  traceTime:Date,
+  traceTime:String,
   traceType:Number,
 })
 

@@ -15,6 +15,7 @@ var CustomerSchema = new mongoose.Schema({
   remark:String,
   userId:String,
   userPath:String,
+  createTime:String,
 })
 
 var CustomerModel = db.model('customer',CustomerSchema);

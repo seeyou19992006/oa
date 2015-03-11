@@ -27,7 +27,7 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
     grid.render();
   })();
 
-  $("#form_search").submit(function(){
+  $("#form-search").submit(function(){
     store.load($(this).toObject());
     return false;
   })

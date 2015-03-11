@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
 router.post('/add',function(req,res,next) {
   var record = req.body;
   record.userId = req.session.user.userId;
-  record.traceTime = new Date();
+  record.traceTime = new Date().format('yyyy-MM-dd hh:mm:ss');
   record.companyId = req.session.user.companyId;
   var entity = new TraceRecordModel(record);
   entity.save(function(err,result){

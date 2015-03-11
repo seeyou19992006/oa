@@ -5,16 +5,16 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-require('./dateFormat');
-console.log(new Date().format('yy-MM-dd hh:mm:ss'));
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var flash = require('connect-flash');
 var settings = require('./settings');
+require('./dateFormat');
 
 global.mongoose = require('mongoose');
 global.db = mongoose.createConnection('localhost','oa');
 global.Query = require('./models/query.js');
+global._ = require('underscore');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');

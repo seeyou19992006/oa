@@ -3,6 +3,7 @@ var router = express.Router();
 
 var UserModel = require('../models/user');
 var CompanyModel = require('../models/company');
+var CustomerModel = require('../models/customer');
 var TraceRecordModel = require('../models/traceRecord');
 
 /* GET home page. */
@@ -40,13 +41,35 @@ router.post('/login', function(req, res, next) {
 router.get('/statistics',function(req,res,next){
   res.render('statistics',{user:req.session.user});
 })
+
+router.get('/statistics/user',function(req,res,next){
+  res.render('statisticsUser',{user:req.session.user});
+})
 router.get('/statistics/user/find',function(req,res,next){
   //今天
+  var result = [
+    {time:'今天'},
+    {time:'本周'},
+    {time:'本月内'},
+    {time:'三个月内'},
+    {time:'半年内'},
+    {time:'半年'},
+    {time:'今年'},
+    {time:'一年内'},
+    {time:'总共'}
+  ];
   var queryToday = new Query({
     param:{
-      traceTime:{$gt:new Date(new Date().format('yyyy-MM-dd 00:00:00'))}
+      traceTime:{$gt:new Date().format('yyyy-MM-dd 00:00:00')}
     },
     model:TraceRecordModel
+  });
+  var traceTodayParam = {
+    traceTime:{$gt:new Date().format('yyyy-MM-dd 00:00:00')}
+  }
+  TraceRecordModel.count(traceTodayParam,function(err,count){
+    result[0].total = count;
+    res.send({data:result});
   });
 })
 router.get('/statistics/company/find',function(req,res,next){
@@ -68,15 +91,54 @@ router.get('/statistics/company/find',function(req,res,next){
     }
     var traceTimeParam = {};
     if(req.query.traceTimeStart){
-      traceTimeParam.$gt = new Date(req.query.traceTimeStart);
+      traceTimeParam.$gt = req.query.traceTimeStart+' 00:00:00';
     }else{
-      traceTimeParam.$gt = new Date('2000-01-01');
+      traceTimeParam.$gt = '2000-01-01 00:00:00';
     }
     if(req.query.traceTimeStart){
-      traceTimeParam.$lt = new Date(req.query.traceTimeEnd);
+      traceTimeParam.$lt = req.query.traceTimeEnd +'23:59:59';
     }else{
-      traceTimeParam.$lt = new Date('2999-12-31');
+      traceTimeParam.$lt = '2999-12-31 23:59:59';
     }
+
+    var completeFlag = 0;
+    var merge = function(result,arr1,arr2){
+      for(var i = 0 ;i <arr1.length ; i ++){
+        arr1[i].customerCount = arr2[i].customerCount;
+      }
+      result.data = arr1;
+      res.send(result);
+    }
+    var customerReturnResult = [];
+    var traceReturnResult = [];
+    CustomerModel.collection.group(
+      {userId:true},
+      {
+        userId:{$in:userIds},
+        createTime:traceTimeParam
+      },
+      {count:0},
+      function(obj,prev){
+        prev.count++;
+      },
+      function(err,data){
+        console.log(data);
+        console.log(userIds);
+        var returnResult = customerReturnResult;
+        for(var i = 0;i<result.data.length;i++){
+          returnResult.push(result.data[i].toObject());
+        }
+        for(var i =0 ; i< data.length;i ++){
+          var index = userIdMap[data[i].userId];
+          returnResult[index].customerCount = data[i].count;
+        }
+        //result.data = returnResult;
+        completeFlag++;
+        if(completeFlag==2){
+          merge(result,traceReturnResult,customerReturnResult);
+        }
+      }
+    );
     TraceRecordModel.collection.group(
       {userId:true},
       {
@@ -90,7 +152,7 @@ router.get('/statistics/company/find',function(req,res,next){
       function(err,data){
         console.log(data);
         console.log(userIds);
-        var returnResult = [];
+        var returnResult = traceReturnResult;
         for(var i = 0;i<result.data.length;i++){
           returnResult.push(result.data[i].toObject());
         }
@@ -98,8 +160,11 @@ router.get('/statistics/company/find',function(req,res,next){
           var index = userIdMap[data[i].userId];
           returnResult[index].count = data[i].count;
         }
-        result.data = returnResult;
-        res.send(result);
+        //result.data = returnResult;
+        completeFlag++;
+        if(completeFlag==2){
+          merge(result,traceReturnResult,customerReturnResult);
+        }
       }
     );
   });

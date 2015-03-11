@@ -9,7 +9,8 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
     var columns = [
       {title:'员工帐号',dataIndex:'userId',width:'30%'},
       {title:'姓名',dataIndex:'userName',width:'30%'},
-      {title:'跟踪数',dataIndex:'count',width:'40%'},
+      {title:'跟踪数',dataIndex:'count',width:'20%'},
+      {title:'锁定数',dataIndex:'customerCount',width:'20%'}
     ];
     store = new Data.Store({
       url:'/statistics/company/find',
