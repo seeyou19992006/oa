@@ -120,7 +120,8 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
   (function(){
     var columns = [
       {title:'跟踪内容',dataIndex:'traceContent',width:400},
-      {title:'跟踪时间',dataIndex:'traceTime',width:265}
+      {title:'跟踪时间',dataIndex:'traceTime',width:215},
+      {title:'跟踪类型',dataIndex:'traceType',width:100,renderer:Global.traceTypeRenderer}
     ]
     var store = new Data.Store({
       url:'/traceRecords/find',
@@ -133,6 +134,7 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
       render:'#grid_trace_record',
       columns:columns,
       store:store,
+      width:750
     });
     grid.render();
     traceRecordStore = store;
@@ -142,7 +144,7 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
     var dialogShowTraceRecord = new Overlay.Dialog({
       title:'跟踪记录',
       contentId:'dialog_grid_trace_record',
-      width:700,
+      width:780,
     })
 
     grid.on('cellclick',function(e){

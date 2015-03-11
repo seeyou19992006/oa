@@ -1,0 +1,122 @@
+<html>
+<head>
+  <title>statistics</title>
+  <link rel="stylesheet" type="text/css" href="/bui/css/bs3/bui-min.css">
+  <link rel="stylesheet" type="text/css" href="/bui/css/bs3/dpl-min.css">
+  <link rel='stylesheet' type="text/css" href='/stylesheets/style.css' />
+  <style type="text/css">
+  html,body{
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+  }
+  .header{
+    height: 100px;
+    background: #999;
+  }
+  body{
+    width: 1200px;
+    margin: auto;
+    background: #bbb;
+    min-width: 1000px;
+  }
+  .title{
+    font-size: 30px;
+    display: inline-block;
+    bottom: 0px;
+  }
+  .search-bar{
+    background-color: #fff;
+    border: 1px solid #e6e6e6;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.05);
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .form-horizontal{
+    margin-top: 5px;
+  }
+  #menu{
+    bottom: 0px;
+    position: relative;
+  }
+  #menu, #menu li {
+    height: 30px;
+    list-style:none; /* 将默认的列表符号去掉 */
+    padding:0; /* 将默认的内边距去掉 */
+    margin:0; /* 将默认的外边距去掉 */
+    float: left;
+    font-size: 20px;
+    border-left: 3px solid #999;
+    border-right: 3px solid #999;
+    background: #bbb;
+  }
+  #menu a {
+    text-decoration:none;
+  }
+  #user{
+    height: 70px;
+  }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div style="float:left;width:400px">
+      <img height='100%' src="/images/logo.png">
+      <label class="title">万和数据OA系统</label>
+    </div>
+    <div style="float:right;height:100px;">
+      <div id="user">
+        <span><%=user.userName%></span>
+        <a href="/logout">退出</a>
+      </div>
+      <ul id="menu">
+        <li><a href="/customers/2">客户管理</a> </li>
+        <li><a href="/statistics/user">统计信息</a> </li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="search-bar">
+      <form id="form-search" class="form-horizontal">
+          <div class="row">
+            <div class="control-group span7">
+              <label class="control-label">客户姓名</label>
+              <div class="controls">
+                <input type="text" name="customerName"  class="control-text">
+              </div>
+            </div>
+            <div class="control-group span8">
+              <label class="control-label">客户类型</label>
+              <div class="controls">
+                <select name="customerType"  class="span">
+                  <option value='1'>准客户</option>
+                  <option value='2'>沟通潜力客户</option>
+                  <option value='3'>一般客户</option>
+                  <option value='4'>未有兴趣</option>
+                  <option value='5'>本地化客户</option>
+                  <option value='6'>黑名单</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-actions span4">
+              <button id="btnSearch" type="submit" class="button button-primary">搜索</button>
+            </div>
+            <ul class="toolbar " style="float:right">
+              <li><button type="button"  id="btn_add_customer" class="button button-primary">+</button></li>
+            </ul>
+          </div>
+      </form>
+    </div>
+    <div class="">
+      <div id='grid'></div>
+    </div>
+  </div>
+</body>
+</html>
+
+<script type="text/javascript" src="/javascripts/jquery-1.8.1.min.js"></script>
+<script type="text/javascript" src="/bui/seed-min.js"></script>
+<script type="text/javascript" src="/javascripts//main.js"></script>
+<script type="text/javascript" src="/javascripts//global.js"></script>
+<script type="text/javascript" src="/javascripts//autocomplete.js"></script>
+<script type="text/javascript" src="/javascripts/assets/statisticsUser.js"></script>

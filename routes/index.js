@@ -40,6 +40,13 @@ router.post('/login', function(req, res, next) {
 router.get('/statistics',function(req,res,next){
   res.render('statistics',{user:req.session.user});
 })
+router.get('/statistics/user/find',function(req,res,next){
+  var query = new Query({
+    param:{
+      traceTime:{$gt:new Date(new Date().format('yyyy-MM-dd 00:00:00'))}
+    }
+  });
+})
 router.get('/statistics/company/find',function(req,res,next){
   var query = new Query({
     param:{
