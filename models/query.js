@@ -14,8 +14,10 @@ var Query = function(obj){
 Query.prototype.query = function(callback){
   var that = this;
   var query = that.model.find(that.param);
-  query.skip(that.page.start);
-  query.limit(that.page.limit);
+  if(that.page){
+    query.skip(that.page.start);
+    query.limit(that.page.limit);
+  }
   query.exec(function(err,docs){
     if(err){
     }else{
