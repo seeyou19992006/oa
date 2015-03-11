@@ -6,6 +6,10 @@ router.get('/', function(req, res, next) {
   res.render('customer', {user:req.session.user});
 });
 
+router.get('/2', function(req, res, next) {
+  res.render('customer2', {user:req.session.user});
+});
+
 router.post('/add',function(req,res,next) {
   var record = req.body;
   record.userId = req.session.user.userId;

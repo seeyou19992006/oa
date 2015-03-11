@@ -28,7 +28,7 @@ router.post('/login', function(req, res, next) {
             res.redirect('/users/user2');
             break;
           case 2:
-            res.redirect('/customers');
+            res.redirect('/customers/2');
         }
       });
     }else{
