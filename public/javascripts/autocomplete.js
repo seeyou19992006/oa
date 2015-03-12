@@ -18,7 +18,7 @@
   var getPosition = function($input){
     var height = $input.height();
     var top = $input.offset().top;
-    var left = $input.offset().left;
+    var left = $input.offset().left - $('body').offset().left;
     var paddingTop = cssToInt($input.css("padding-top"));
     var paddingBottom =  cssToInt($input.css("padding-bottom"));
     var borderTop = cssToInt($input.css("border-top"));

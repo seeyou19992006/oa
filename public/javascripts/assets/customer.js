@@ -37,22 +37,32 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
       {title:'资金量',dataIndex:'money'},
       {title:'客户类型',dataIndex:'customerType',renderer:Global.customerTypeRenderer},
       {title:'性别',dataIndex:'sex',renderer:Global.sexRenderer},
-      // {title:'生日',dataIndex:'birthday',width:100},
-      // {title:'省份',dataIndex:'provinceName',width:100},
-      // {title:'城市',dataIndex:'cityName'},
       {title:'手机',dataIndex:'cellPhone'},
-      // {title:'电话',dataIndex:'phone',width:100},
       {title:'QQ号',dataIndex:'qqNumber'},
       {title:'昵称',dataIndex:'nickname'},
       {title:'身份证',dataIndex:'idCard'},
-      // {title:'地址',dataIndex:'address',width:100},
-      // {title:'备注',dataIndex:'remark',width:100},
       {title:'操作',renderer:function(){
-        return '<button class="update button button-primary button-mini" title="编辑客户">E</button>'+
-        '<button class="delete button button-primary button-mini" title="删除">D</button>' +
-        '<button class="addRecord button button-primary button-mini" title="新增跟踪">A</button>'+
-        '<button class="showRecord button button-primary button-mini" title="查看跟踪">S</button>';
-      },width:120}
+        return    '<span class="grid-command update" title="编辑客户">'           
+              +     '<span class="x-icon x-icon-warning update">'              
+              +       '<i class="icon icon-white icon-edit update"></i>'   
+              +     '</span>'                                          
+              +   '</span>'
+              +   '<span class="grid-command delete" title="删除">'           
+              +     '<span class="x-icon x-icon-error delete">'              
+              +       '<i class="icon icon-white icon-trash delete"></i>'   
+              +     '</span>'                                          
+              +   '</span>'
+              +   '<span class="grid-command addRecord" title="新增跟踪">'           
+              +     '<span class="x-icon x-icon-success addRecord">'              
+              +       '<i class="icon icon-white  icon-plus addRecord"></i>'   
+              +     '</span>'                                          
+              +   '</span>'
+              +   '<span class="grid-command showRecord" title="查看跟踪">'           
+              +     '<span class="x-icon x-icon-info showRecord">'              
+              +       '<i class="icon icon-white icon-eye-open showRecord"></i>'   
+              +     '</span>'                                          
+              +   '</span>' ;              
+      },width:140}
     ];
     store = new Data.Store({
       url:'/customers/find',

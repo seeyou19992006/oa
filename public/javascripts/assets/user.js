@@ -74,8 +74,18 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
       {title:'所属公司',dataIndex:'',width:'20%'},
       {title:'员工类型',dataIndex:'role',width:'20%',renderer:Global.roleRender},
       {title:'操作',width:'20%',renderer:function(){
-        return '<button class="update button button-primary button-mini">编辑</button>'+
-        '<button class="delete button button-primary button-mini">删除</button>';
+        // return '<button class="update button button-primary button-mini">编辑</button>'+
+        // '<button class="delete button button-primary button-mini">删除</button>';
+        return    '<span class="grid-command update" title="编辑">'           
+              +     '<span class="x-icon x-icon-warning update">'              
+              +       '<i class="icon icon-white icon-edit update"></i>'   
+              +     '</span>'                                          
+              +   '</span>'
+              +   '<span class="grid-command delete" title="删除">'           
+              +     '<span class="x-icon x-icon-error delete">'              
+              +       '<i class="icon icon-white icon-trash delete"></i>'   
+              +     '</span>'                                          
+              +   '</span>' ;
       }}
     ];
     store = new Data.Store({

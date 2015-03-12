@@ -40,7 +40,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(flash());
 
 app.use(session({
-  cookie: { maxAge: 200 * 60 * 1000 },
+  cookie: { maxAge: 20 * 60 * 1000 },
   secret: settings.cookieSecret,
   store: new MongoStore({
       db: settings.db,
