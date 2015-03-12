@@ -23,7 +23,7 @@ router.post('/login', function(req, res, next) {
         req.session.company = company;
         switch(user.role){
           case 0:
-            res.redirect('/companys');
+            res.redirect('/companys/2');
             break;
           case 1:
             res.redirect('/users/user2');
@@ -58,18 +58,27 @@ router.get('/statistics/user/find',function(req,res,next){
     {time:'一年内'},
     {time:'总共'}
   ];
-  var queryToday = new Query({
-    param:{
-      traceTime:{$gt:new Date().format('yyyy-MM-dd 00:00:00')}
-    },
-    model:TraceRecordModel
-  });
-  var traceTodayParam = {
-    traceTime:{$gt:new Date().format('yyyy-MM-dd 00:00:00')}
+  var completeFlag = 0;
+  var sendResult = function(){
+    if(completeFlag == 2 *1){
+      res.send({data:result});
+    }
   }
-  TraceRecordModel.count(traceTodayParam,function(err,count){
-    result[0].total = count;
-    res.send({data:result});
+  var traceTodayPhoneParam = {
+    traceTime:{$gt:new Date().format('yyyy-MM-dd 00:00:00')},
+    traceType:1,
+  }
+  TraceRecordModel.count(traceTodayPhoneParam,function(err,count){
+    result[0].phone = count;
+    sendResult(completeFlag++);
+  });
+  var traceTodayVideoParam = {
+    traceTime:{$gt:new Date().format('yyyy-MM-dd 00:00:00')},
+    traceType:2,
+  }
+  TraceRecordModel.count(traceTodayVideoParam,function(err,count){
+    result[0].video = count;
+    sendResult(completeFlag++);
   });
 })
 router.get('/statistics/company/find',function(req,res,next){

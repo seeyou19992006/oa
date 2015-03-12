@@ -12,13 +12,41 @@ router.get('/2', function(req, res, next) {
 
 router.post('/add',function(req,res,next) {
   var record = req.body;
-  record.userId = req.session.user.userId;
-  record.userPath = req.session.user.companyPath;
-  record.createTime = new Date().format('yyyy-MM-dd hh:mm:ss');
-  var entity = new CustomerModel(record);
-  entity.save(function(err,result){
-  });
-  res.send('add');
+  console.log(record.cellPhone);
+  var $or = [];
+  if(record.cellPhone){
+    $or.push({cellPhone:record.cellPhone});
+  }
+  if(record.qqNumber){
+    $or.push({qqNumber:record.qqNumber});
+  }
+  CustomerModel.findOne({$or:$or},function(err,doc){
+    if(doc){
+      res.send({
+        ret:false,
+        msg:'已存在相同的客户',
+        data:doc
+      });
+    }else{
+      record.userId = req.session.user.userId;
+      record.userPath = req.session.user.companyPath;
+      record.createTime = new Date().format('yyyy-MM-dd hh:mm:ss');
+      var entity = new CustomerModel(record);
+      entity.save(function(err,result){
+        if(!err){
+          res.send({
+            ret:true,
+            msg:'新增成功!'
+          });
+        }else{
+          res.send({
+            ret:false,
+            msg:'数据库异常,新增失败!'
+          });
+        }
+      });
+    }
+  })
 })
 
 router.post('/update',function(req,res,next) {

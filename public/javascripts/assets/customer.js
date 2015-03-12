@@ -9,11 +9,15 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
         if(!formAddCustomer.isValid()) return;
         var record = formAddCustomer.toObject();
         $.post('/customers/add',record,function(data){
-          console.log(data);
-          formAddCustomer.clearFields();
-          formAddCustomer.clearErrors();
-          dialogAddCustomer.close();
-          store.load();
+          if(data.ret){
+            BUI.Message.Alert(data.msg,'success');
+            formAddCustomer.clearFields();
+            formAddCustomer.clearErrors();
+            dialogAddCustomer.close();
+            store.load();
+          }else{
+            BUI.Message.Alert(data.msg,'err');
+          }
         });;
       }
     });
@@ -35,7 +39,7 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
       {title:'性别',dataIndex:'sex',renderer:Global.sexRenderer},
       // {title:'生日',dataIndex:'birthday',width:100},
       // {title:'省份',dataIndex:'provinceName',width:100},
-      {title:'城市',dataIndex:'cityName'},
+      // {title:'城市',dataIndex:'cityName'},
       {title:'手机',dataIndex:'cellPhone'},
       // {title:'电话',dataIndex:'phone',width:100},
       {title:'QQ号',dataIndex:'qqNumber'},

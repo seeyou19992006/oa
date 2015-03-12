@@ -6,7 +6,11 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
   (function(){
     var columns = [
       {title:'时间段',dataIndex:'time'},
-      {title:'总跟踪数',dataIndex:'total'},
+      {title:'总跟踪数',dataIndex:'total',renderer:function(value,obj){
+        if(obj.phone&&obj.video){
+          return obj.phone +obj.video;
+        }
+      }},
       {title:'电话跟踪',dataIndex:'phone'},
       {title:'视频跟踪',dataIndex:'video'},
     ];
