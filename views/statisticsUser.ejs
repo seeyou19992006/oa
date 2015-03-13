@@ -26,22 +26,24 @@
     <div class="search-bar">
       <form id="form-search" class="form-horizontal">
           <div class="row">
-            <div class="control-group span7">
-              <label class="control-label">客户姓名</label>
-              <div class="controls">
-                <input type="text" name="customerName"  class="control-text">
+            <div class="control-group span10">
+              <label class="control-label">起止日期：</label>
+              <div class="controls bui-form-group" data-rules="{dateRange : true}">
+                <input id="queryTimeStart" name="start" class="span10 calendar" type="text"><label>&nbsp;-&nbsp;</label>
+                <input id="queryTimeEnd" name="end" class="span10 calendar" type="text">
               </div>
             </div>
             <div class="control-group span8">
-              <label class="control-label">客户类型</label>
+              <label class="control-label">快速选择</label>
               <div class="controls">
-                <select name="customerType"  class="span">
-                  <option value='1'>准客户</option>
-                  <option value='2'>沟通潜力客户</option>
-                  <option value='3'>一般客户</option>
-                  <option value='4'>未有兴趣</option>
-                  <option value='5'>本地化客户</option>
-                  <option value='6'>黑名单</option>
+                <select id="quickChoice" class="span">
+                  <option value='1'>今天</option>
+                  <option value='2'>本周</option>
+                  <option value='3'>本月</option>
+                  <option value='4'>一个月内</option>
+                  <option value='5'>三个月内</option>
+                  <option value='6'>半年内</option>
+                  <option value='7'>一年内</option>
                 </select>
               </div>
             </div>

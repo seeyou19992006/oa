@@ -46,38 +46,39 @@ router.get('/statistics/user',function(req,res,next){
   res.render('statisticsUser',{user:req.session.user});
 })
 router.get('/statistics/user/find',function(req,res,next){
-  //今天
-  var result = [
-    {time:'今天'},
-    {time:'本周'},
-    {time:'本月内'},
-    {time:'三个月内'},
-    {time:'半年内'},
-    {time:'半年'},
-    {time:'今年'},
-    {time:'一年内'},
-    {time:'总共'}
-  ];
+  var result = {};
   var completeFlag = 0;
   var sendResult = function(){
-    if(completeFlag == 2 *1){
-      res.send({data:result});
+    if(completeFlag == 3){
+      res.send({data:[result]});
     }
   }
-  var traceTodayPhoneParam = {
-    traceTime:{$gt:new Date().format('yyyy-MM-dd 00:00:00')},
-    traceType:1,
+  var queryTimeParam = {
+    $gt:moment(query.body.start).format();
+    $lt:moment(query.body.end).format('YYYY-MM-DD 23:59:59');
   }
-  TraceRecordModel.count(traceTodayPhoneParam,function(err,count){
-    result[0].phone = count;
+  //电话跟踪
+  TraceRecordModel.count({
+    traceTime:queryTimeParam,
+    traceType:1,
+  },function(err,count){
+    result.phone = count;
     sendResult(completeFlag++);
   });
-  var traceTodayVideoParam = {
-    traceTime:{$gt:new Date().format('yyyy-MM-dd 00:00:00')},
+  //视频跟踪
+  TraceRecordModel.count({
+    traceTime:queryTimeParam,
     traceType:2,
-  }
-  TraceRecordModel.count(traceTodayVideoParam,function(err,count){
-    result[0].video = count;
+  },function(err,count){
+    result.video = count;
+    sendResult(completeFlag++);
+  });
+  //锁定客户数
+  CustomerModel.count({
+    createTime:queryTimeParam,
+    userId:req.session.user.userId,
+  },function(err,count){
+    result.customerCount = count;
     sendResult(completeFlag++);
   });
 })

@@ -17,7 +17,8 @@
     "connect-mongo": ">=0.1.7",
     "express-session": "~1.0.4",
     "connect-flash": "*",
-    "mongoose":"*",
-    "underscore":"*"
+    "mongoose": "*",
+    "underscore": "*",
+    "moment": ">=2.9.0"
   }
 }

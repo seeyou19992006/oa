@@ -30,7 +30,7 @@ router.post('/add',function(req,res,next) {
     }else{
       record.userId = req.session.user.userId;
       record.userPath = req.session.user.companyPath;
-      record.createTime = new Date().format('yyyy-MM-dd hh:mm:ss');
+      record.createTime = new m new Date().format();
       var entity = new CustomerModel(record);
       entity.save(function(err,result){
         if(!err){

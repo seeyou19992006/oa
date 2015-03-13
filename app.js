@@ -9,12 +9,15 @@ var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var flash = require('connect-flash');
 var settings = require('./settings');
+
 require('./dateFormat');
 
 global.mongoose = require('mongoose');
 global.db = mongoose.createConnection('localhost','oa');
 global.Query = require('./models/query.js');
 global._ = require('underscore');
+global.moment = require('moment');
+moment.defaultFormat='YYYY-MM-DD HH:mm:ss';
 
 var routes = require('./routes/index');
 var users = require('./routes/users');

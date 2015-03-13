@@ -60,5 +60,43 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
   })();
 
 
+  (function(){
+    var $queryTimeStart = $("#queryTimeStart");
+    var $queryTimeEnd = $("#queryTimeEnd");
+    $("#quickChoice").click(function(){
+      var now = moment();
+      switch(this.value){
+        case '1':
+          $queryTimeStart.val(now.format('YYYY-MM-DD'));
+          $queryTimeEnd.val(now.format('YYYY-MM-DD'));
+          break;
+        case '2':
+          $queryTimeStart.val(now.add('days',- now.days()).format('YYYY-MM-DD'));
+          $queryTimeEnd.val(now.format('YYYY-MM-DD'));
+          break;
+        case '3':
+          $queryTimeStart.val(now.format('YYYY-MM-01'));
+          $queryTimeEnd.val(now.format('YYYY-MM-DD'));
+          break;
+        case '4':
+          $queryTimeStart.val(now.add('months',- now.days()).format('YYYY-MM-DD'));
+          $queryTimeEnd.val(now.format('YYYY-MM-DD'));
+          break;
+        case '5':
+          $queryTimeStart.val(now.add('days',- now.days()).format('YYYY-MM-DD'));
+          $queryTimeEnd.val(now.format('YYYY-MM-DD'));
+          break;
+        case '6':
+          $queryTimeStart.val(now.add('days',- now.days()).format('YYYY-MM-DD'));
+          $queryTimeEnd.val(now.format('YYYY-MM-DD'));
+          break;
+        case '7':
+          $queryTimeStart.val(now.add('days',- now.days()).format('YYYY-MM-DD'));
+          $queryTimeEnd.val(now.format('YYYY-MM-DD'));
+          break;
+      }
+    })
+  })();
+
 })
   
