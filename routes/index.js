@@ -54,12 +54,19 @@ router.get('/statistics/user/find',function(req,res,next){
     }
   }
   var queryTimeParam = {
-    $gt:moment(query.body.start).format();
-    $lt:moment(query.body.end).format('YYYY-MM-DD 23:59:59');
+    $gt:'2000-01-01 00:00:00',
+    $lt:moment().format()
+  }
+  if(req.query.timeStart && req.query.timeEnd){
+    queryTimeParam = {
+      $gt:moment(req.query.timeStart).format(),
+      $lt:moment(req.query.timeEnd).format('YYYY-MM-DD 23:59:59'),
+    }
   }
   //电话跟踪
   TraceRecordModel.count({
     traceTime:queryTimeParam,
+    userId:req.session.user.userId,
     traceType:1,
   },function(err,count){
     result.phone = count;
@@ -68,6 +75,7 @@ router.get('/statistics/user/find',function(req,res,next){
   //视频跟踪
   TraceRecordModel.count({
     traceTime:queryTimeParam,
+    userId:req.session.user.userId,
     traceType:2,
   },function(err,count){
     result.video = count;
@@ -81,6 +89,9 @@ router.get('/statistics/user/find',function(req,res,next){
     result.customerCount = count;
     sendResult(completeFlag++);
   });
+})
+router.get('/statistics/customer',function(req,res,next){
+  res.render('statisticsCustomer',{user:req.session.user});
 })
 router.get('/statistics/company/find',function(req,res,next){
   var query = new Query({
@@ -180,9 +191,9 @@ router.get('/statistics/company/find',function(req,res,next){
   });
   // res.render('statistics',{user:req.session.user});
 })
-router.get('/statistics/user/find',function(req,res,next){
-  res.render('statistics',{user:req.session.user});
-})
+// router.get('/statistics/user/find',function(req,res,next){
+//   res.render('statistics',{user:req.session.user});
+// })
 
 router.get('/logout', function(req, res, next) {
   req.session.user = null;

@@ -16,7 +16,7 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
             dialogAddCustomer.close();
             store.load();
           }else{
-            BUI.Message.Alert(data.msg,'err');
+            BUI.Message.Alert(data.msg,'error');
           }
         });;
       }
@@ -25,6 +25,10 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
       srcNode:'#form_add_customer'
     }).render();
     $('#btn_add_customer').click(function(){
+      formAddCustomer.setRecord({
+        customerType:1,
+        sex:1
+      })
       dialogAddCustomer.show(); 
     })
   })();
@@ -77,6 +81,9 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
       columns:columns,
       forceFit:false,
       store:store,
+      bbar:{
+        pagingBar:true
+      }
     });
     grid.render();
   })();
@@ -99,9 +106,6 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
     formAddTraceRecord = new Form.Form({
       srcNode:'#form_add_trace_record'
     }).render();
-    $('#btn_add_trace_record').click(function(){
-      dialogAddTraceRecord.show(); 
-    });
   })();
 
   var dialogUpdateCustomer;
@@ -148,7 +152,11 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
       render:'#grid_trace_record',
       columns:columns,
       store:store,
-      width:750
+      width:750,
+      tableCls:'min-height',
+      bbar:{
+        pagingBar:true
+      }
     });
     grid.render();
     traceRecordStore = store;
@@ -167,13 +175,17 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
       if(target.hasClass('addRecord')){
         record.customerId = record._id;
         record.customerTypeString = Global.customerTypeRenderer(record.customerType);
+        formAddTraceRecord.clearFields();
+        formAddTraceRecord.clearErrors();
         Global.setEditValue('#form_add_trace_record',record);
+        record.traceType = 1;
         formAddTraceRecord.setRecord(record);
         dialogAddTraceRecord.show();
         return false;
       }else if(target.hasClass('showRecord')){
         traceRecordStore.load({
-          customerId:record._id
+          customerId:record._id,
+          start:0
         },function(){
           dialogShowTraceRecord.show();
         })

@@ -29,8 +29,8 @@
             <div class="control-group span10">
               <label class="control-label">起止日期：</label>
               <div class="controls bui-form-group" data-rules="{dateRange : true}">
-                <input id="queryTimeStart" name="start" class="span10 calendar" type="text"><label>&nbsp;-&nbsp;</label>
-                <input id="queryTimeEnd" name="end" class="span10 calendar" type="text">
+                <input id="queryTimeStart" name="timeStart" class="span10 calendar" type="text"><label>&nbsp;-&nbsp;</label>
+                <input id="queryTimeEnd" name="timeEnd" class="span10 calendar" type="text">
               </div>
             </div>
             <div class="control-group span8">
@@ -50,9 +50,6 @@
             <div class="form-actions span4">
               <button id="btnSearch" type="submit" class="button button-primary">搜索</button>
             </div>
-            <ul class="toolbar " style="float:right">
-              <li><button type="button"  id="btn_add_customer" class="button button-primary">+</button></li>
-            </ul>
           </div>
       </form>
     </div>
@@ -63,9 +60,5 @@
 </body>
 </html>
 
-<script type="text/javascript" src="/javascripts/jquery-1.8.1.min.js"></script>
-<script type="text/javascript" src="/bui/seed-min.js"></script>
-<script type="text/javascript" src="/javascripts//main.js"></script>
-<script type="text/javascript" src="/javascripts//global.js"></script>
-<script type="text/javascript" src="/javascripts//autocomplete.js"></script>
+<% include scripts %>
 <script type="text/javascript" src="/javascripts/assets/statisticsUser.js"></script>

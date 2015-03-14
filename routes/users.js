@@ -116,6 +116,54 @@ router.get('/find',function(req,res,next) {
   });
 })
 
+router.get('/find/company',function(req,res,next) {
+  var query = new Query({
+    param:{
+      userName: new RegExp(req.query.userName),
+      companyPath:new RegExp('^' + req.session.user.companyPath),
+      userId:new RegExp(req.query.userId),
+      role:2
+    },
+    model:UserModel,
+    page:req.query
+  })
+  query.query(function(err,result){
+    if(err){
+
+    }else{
+      res.send(result);
+    }
+  });
+})
+
+router.post('/find/autocomplete',function(req,res,next) {
+  if(typeof req.body.ignoreUserIds == 'string'){
+    req.body.ignoreUserIds = [req.body.ignoreUserIds]
+  }else{
+    req.body.ignoreUserIds = []
+  }
+  var param = {
+    userName: new RegExp(req.body.userName),
+    companyId:req.session.user.companyId,
+    role:2,
+    userId:{
+      $nin:req.body.ignoreUserIds
+    }
+  };
+  var query = new Query({
+    param:param,
+    model:UserModel,
+    page:req.query
+  })
+  query.query(function(err,result){
+    if(err){
+      console.log(err);
+    }else{
+      res.send(result);
+    }
+  });
+})
+
 router.get('/get',function(req,res,next) {
   res.send('get');
 })

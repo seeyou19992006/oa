@@ -9,6 +9,7 @@ var Query = function(obj){
   this.param = obj.param
   this.model = obj.model;
   this.page = obj.page;
+  this.sort = obj.sort;
 }
 
 Query.prototype.query = function(callback){
@@ -17,6 +18,9 @@ Query.prototype.query = function(callback){
   if(that.page){
     query.skip(that.page.start);
     query.limit(that.page.limit);
+  }
+  if(that.sort){
+    query.sort(that.sort);
   }
   query.exec(function(err,docs){
     if(err){

@@ -81,6 +81,11 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
               +       '<i class="icon icon-white icon-edit update"></i>'   
               +     '</span>'                                          
               +   '</span>'
+              +   '<span class="grid-command changeCustomer" title="转移客户">'           
+              +     '<span class="x-icon x-icon-warning changeCustomer">'              
+              +       '<i class="icon icon-white icon-edit changeCustomer"></i>'   
+              +     '</span>'                                          
+              +   '</span>'
               +   '<span class="grid-command delete" title="删除">'           
               +     '<span class="x-icon x-icon-error delete">'              
               +       '<i class="icon icon-white icon-trash delete"></i>'   
@@ -89,7 +94,7 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
       }}
     ];
     store = new Data.Store({
-      url:'/users/find',
+      url:'/users/find/company',
       root:'data',
       pageSize:10,
       totalProperty:'total',
@@ -106,6 +111,12 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
     });
     grid.render();
   })();
+
+  var dialog_grid_customer = new Overlay.Dialog({
+    title:'转移客户',
+    contentId:'dialog_grid_customer',
+    width:780,
+  });
 
   (function(){
     grid.on('cellclick',function(e){
@@ -125,16 +136,85 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
           })       
         })
         return false;
+      }else if(target.hasClass('changeCustomer')){
+        grid_customer_store.load({fromUserId:record.userId});
+        changeParam.ignoreUserIds = [record.userId];
+        dialog_grid_customer.show();
+        return false;
       }
     })
   })();
 
+  var grid_customer;
+  var grid_customer_store;
+  (function(){
+    var columns = [
+      {title:'客户姓名',dataIndex:'customerName'},
+      {title:'资金量',dataIndex:'money',width:60},
+      {title:'客户类型',dataIndex:'customerType',renderer:Global.customerTypeRenderer},
+      {title:'性别',dataIndex:'sex',renderer:Global.sexRenderer,width:40},
+      {title:'手机',dataIndex:'cellPhone',width:'150px'},
+      {title:'QQ号',dataIndex:'qqNumber'},
+    ];
+    var store = new Data.Store({
+      url:'/customers/find/company',
+      root:'data',
+      pageSize:10,
+      totalProperty:'total',
+      autoLoad:false
+    });
+    var grid = new Grid.Grid({
+      width:'100%',
+      render:'#grid_customer',
+      columns:columns,
+      forceFit:false,
+      store:store,
+      plugins : [Grid.Plugins.CheckSelection],
+      bbar:{
+        pagingBar:true
+      },
+    });
+    grid.render();
+    grid_customer = grid;
+    grid_customer_store = store;
+    $("#form-search-grid-customer").submit(function(){
+      store.load($(this).toObject());
+      return false;
+    })
+  })();
 
 
   $("#form-search").submit(function(){
     store.load($(this).toObject());
     return false;
   })
+
+  var changeParam = {
+    ignoreUserIds:[]
+  }
+  $("#toUserId").autoComplete({
+    hiddenInputs:[{name:'toUserId',property:'userId'}],
+    renderer:function(record){
+      return record.userName;
+    },
+    setValue:function(record){
+      return record.userName;
+    },
+    data:changeParam,
+    store: new Data.Store({
+      url : '/users/find/autocomplete',
+      root : "data",
+      autoLoad : false,
+      pageSize : 10,
+      totalProperty : "total",
+      proxy : {
+        ajaxOptions : {
+          traditional : true,
+          type : "post",
+        }
+      }
+    }),
+  });
 
 
 })

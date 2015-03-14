@@ -46,8 +46,16 @@ Global.setEditValue = function(parent,record){
         $dom.val(fieldValue);
       }else if(dom.tagName == 'TEXTAREA'){
         $dom.val(fieldValue);
+      }else if(dom.tagName == 'SELECT'){
+        $dom.val(fieldValue);
       }else{
         $dom.text(fieldValue);
+      }
+    }else{
+      if(dom.tagName == 'INPUT'){
+        $dom.val('');
+      }else if(dom.tagName == 'TEXTAREA'){
+        $dom.val('');
       }
     }
   })

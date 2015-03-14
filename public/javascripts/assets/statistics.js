@@ -1,7 +1,7 @@
 BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],function(Overlay,Form,Tree,Data,Menu,Grid){
-   var form = new BUI.Form.HForm({
-        srcNode : '#form-search'
-      }).render();
+  var form = new BUI.Form.HForm({
+    srcNode : '#form-search'
+  }).render();
 
   var grid;
   var store;
@@ -22,7 +22,7 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
     store = new Data.Store({
       url:'/statistics/company/find',
       root:'data',
-      pageSize:10,
+      //pageSize:10,
       totalProperty:'total',
       autoLoad:true
     });
@@ -30,10 +30,7 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
       render:'#grid',
       columns:columns,
       store:store,
-      bbar:{
-        pagingBar:true
-      },
-      width:'100%'
+      width:'100%',
     });
     grid.render();
 
@@ -46,9 +43,14 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
       var record = e.record;
       var target = $(e.domTarget);
       if(target.hasClass('showCustomer')){
+        grid_customer_store.load({userId:record.userId});
         dialog_grid_customer.show();
         return false;
       }      
+    })
+    $("#form-search").submit(function(){
+      store.load($(this).toObject());
+      return false;
     })
   })();
 
@@ -70,13 +72,18 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
       render:'#grid_trace_record',
       columns:columns,
       store:store,
-      width:750
+      width:750,
+      tableCls:'min-height',
+      bbar:{
+        pagingBar:true
+      }
     });
     grid.render();
     traceRecordStore = store;
   })();
 
   var grid_customer;
+  var grid_customer_store;
   (function(){
     var columns = [
       {title:'客户姓名',dataIndex:'customerName'},
@@ -93,23 +100,27 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
               +   '</span>' ;              
       },width:80}
     ];
-    store = new Data.Store({
-      url:'/customers/find',
+    var store = new Data.Store({
+      url:'/customers/find/company',
       root:'data',
       pageSize:10,
       totalProperty:'total',
-      autoLoad:true
+      autoLoad:false
     });
     var grid = new Grid.Grid({
       width:'100%',
       render:'#grid_customer',
+      tableCls:'min-height',
       columns:columns,
       forceFit:false,
       store:store,
+      bbar:{
+        pagingBar:true
+      }
     });
     grid.render();
     grid_customer = grid;
-
+    grid_customer_store = store;
     $("#form-search-grid-customer").submit(function(){
       store.load($(this).toObject());
       return false;
@@ -137,12 +148,6 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
       }
     })
   })();
-
-  $("#form-search").submit(function(){
-    store.load($(this).toObject());
-    return false;
-  })
-
 
 })
   

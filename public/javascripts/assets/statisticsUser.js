@@ -1,18 +1,18 @@
 BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],function(Overlay,Form,Tree,Data,Menu,Grid){
-
+  var form = new BUI.Form.HForm({
+    srcNode : '#form-search'
+  }).render();
 
   var grid;
   var store;
   (function(){
     var columns = [
-      {title:'时间段',dataIndex:'time'},
       {title:'总跟踪数',dataIndex:'total',renderer:function(value,obj){
-        if(obj.phone&&obj.video){
-          return obj.phone +obj.video;
-        }
-      }},
-      {title:'电话跟踪',dataIndex:'phone'},
-      {title:'视频跟踪',dataIndex:'video'},
+        return obj.phone +obj.video;
+      },width:'25%'},
+      {title:'电话跟踪',dataIndex:'phone',width:'25%'},
+      {title:'视频跟踪',dataIndex:'video',width:'25%'},
+      {title:'锁定客户数',dataIndex:'customerCount',width:'25%'},
     ];
     store = new Data.Store({
       url:'/statistics/user/find',
@@ -64,37 +64,37 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
     var $queryTimeStart = $("#queryTimeStart");
     var $queryTimeEnd = $("#queryTimeEnd");
     $("#quickChoice").click(function(){
-      var now = moment();
       switch(this.value){
         case '1':
-          $queryTimeStart.val(now.format('YYYY-MM-DD'));
-          $queryTimeEnd.val(now.format('YYYY-MM-DD'));
+          $queryTimeStart.val(moment().format('YYYY-MM-DD'));
+          $queryTimeEnd.val(moment().format('YYYY-MM-DD'));
           break;
         case '2':
-          $queryTimeStart.val(now.add('days',- now.days()).format('YYYY-MM-DD'));
-          $queryTimeEnd.val(now.format('YYYY-MM-DD'));
+          $queryTimeStart.val(moment().add('days',- moment().days()).format('YYYY-MM-DD'));
+          $queryTimeEnd.val(moment().format('YYYY-MM-DD'));
           break;
         case '3':
-          $queryTimeStart.val(now.format('YYYY-MM-01'));
-          $queryTimeEnd.val(now.format('YYYY-MM-DD'));
+          $queryTimeStart.val(moment().format('YYYY-MM-01'));
+          $queryTimeEnd.val(moment().format('YYYY-MM-DD'));
           break;
         case '4':
-          $queryTimeStart.val(now.add('months',- now.days()).format('YYYY-MM-DD'));
-          $queryTimeEnd.val(now.format('YYYY-MM-DD'));
+          $queryTimeStart.val(moment().add('months',- 1).format('YYYY-MM-DD'));
+          $queryTimeEnd.val(moment().format('YYYY-MM-DD'));
           break;
         case '5':
-          $queryTimeStart.val(now.add('days',- now.days()).format('YYYY-MM-DD'));
-          $queryTimeEnd.val(now.format('YYYY-MM-DD'));
+          $queryTimeStart.val(moment().add('months',- 3).format('YYYY-MM-DD'));
+          $queryTimeEnd.val(moment().format('YYYY-MM-DD'));
           break;
         case '6':
-          $queryTimeStart.val(now.add('days',- now.days()).format('YYYY-MM-DD'));
-          $queryTimeEnd.val(now.format('YYYY-MM-DD'));
+          $queryTimeStart.val(moment().add('months',- 6).format('YYYY-MM-DD'));
+          $queryTimeEnd.val(moment().format('YYYY-MM-DD'));
           break;
         case '7':
-          $queryTimeStart.val(now.add('days',- now.days()).format('YYYY-MM-DD'));
-          $queryTimeEnd.val(now.format('YYYY-MM-DD'));
+          $queryTimeStart.val(moment().add('years',- 1).format('YYYY-MM-DD'));
+          $queryTimeEnd.val(moment().format('YYYY-MM-DD'));
           break;
       }
+      $('#form-search').submit();
     })
   })();
 

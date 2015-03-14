@@ -20,6 +20,7 @@
       <ul id="menu">
         <li><a href="/users/user2">员工管理</a> </li>
         <li><a href="/statistics">统计信息</a> </li>
+        <li><a href="/statistics/customer">客户统计</a></li>
       </ul>
     </div>
   </div>
@@ -155,6 +156,20 @@
   </form>
 </div>
 
+<div id="dialog_grid_customer" class="hide">
+  <div class="row">
+    <form id="form-search-grid-customer" class="form-horizontal">
+      <input type="hidden" name="fromUserId">;
+      <div class="control-group span7">
+        <label class="control-label">转移给</label>
+        <div class="controls">
+          <input type="text" id="toUserId"  class="control-text">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="row" id="grid_customer"></div>
+</div>
 
 <script type="text/javascript" src="/javascripts/jquery-1.8.1.min.js"></script>
 <script type="text/javascript" src="/bui/seed-min.js"></script>

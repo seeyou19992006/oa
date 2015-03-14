@@ -1,0 +1,85 @@
+<html>
+<head>
+  <title>statistics</title>
+  <link rel="stylesheet" type="text/css" href="/bui/css/bs3/bui-min.css">
+  <link rel="stylesheet" type="text/css" href="/bui/css/bs3/dpl-min.css">
+  <link rel='stylesheet' type="text/css" href='/stylesheets/style.css' />
+</head>
+<body>
+  <div class="header">
+    <div style="float:left;width:400px">
+      <img height='100%' src="/images/logo.png">
+      <label class="title">万和数据OA系统</label>
+    </div>
+    <div style="float:right;height:100px;">
+      <div id="user">
+        <span><%=user.userName%></span>
+        <a href="/logout">退出</a>
+      </div>
+      <ul id="menu">
+        <li><a href="/users/user2">员工管理</a> </li>
+        <li><a href="/statistics">统计信息</a> </li>
+        <li><a href="/statistics/customer">客户统计</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="search-bar">
+      <form id="form-search" class="form-horizontal">
+         <div class="row">
+            <div class="control-group span10">
+              <label class="control-label">起止日期：</label>
+              <div class="controls bui-form-group" data-rules="{dateRange : true}">
+                <input name="createTimeStart" class="span10 calendar" type="text"><label>&nbsp;-&nbsp;</label>
+                <input name="createTimeEnd" class="span10 calendar" type="text">
+              </div>
+            </div>
+            <div class="control-group span7">
+              <label class="control-label">员工：</label>
+              <div class="controls">
+                <input id="form-search-userId" type="text" name="userName"  class="control-text">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="control-group span7">
+              <label class="control-label">客户姓名</label>
+              <div class="controls">
+                <input type="text" name="customerName"  class="control-text">
+              </div>
+            </div>
+            <div class="control-group span8">
+              <label class="control-label">客户类型</label>
+              <div class="controls">
+                <select name="customerType"  class="span">
+                  <option value="">所有</option>
+                  <option value='1'>准客户</option>
+                  <option value='2'>沟通潜力客户</option>
+                  <option value='3'>一般客户</option>
+                  <option value='4'>未有兴趣</option>
+                  <option value='5'>本地化客户</option>
+                  <option value='6'>黑名单</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-actions span4">
+              <button id="btnSearch" type="submit" class="button button-primary">搜索</button>
+            </div>
+          </div>
+      </form>
+    </div>
+    <div class="">
+      <div id='grid'></div>
+    </div>
+  </div>
+</body>
+</html>
+
+
+<div id="dialog_grid_trace_record" class="hide">
+  <div id="grid_trace_record"></div>
+</div>
+
+
+<% include scripts %>
+<script type="text/javascript" src="/javascripts/assets/statisticsCustomer.js"></script>

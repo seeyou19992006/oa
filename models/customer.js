@@ -14,6 +14,7 @@ var CustomerSchema = new mongoose.Schema({
   address:String,
   remark:String,
   userId:String,
+  companyId:Number,
   userPath:String,
   createTime:String,
 })
