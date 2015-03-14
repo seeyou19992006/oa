@@ -13,13 +13,11 @@
     </div>
     <div style="float:right;height:100px;">
       <div id="user">
-        <span><%=user.userName%></span>
-        <a href="/logout">退出</a>
+        <% include userTemplate %>
       </div>
       <ul id="menu">
         <li><a href="/companys/2">分公司管理</a> </li>
         <li><a href="/users/admin">员工管理</a> </li>
-        <li><a href="/statistics/admin">统计信息</a> </li>
       </ul>
     </div>
   </div>
@@ -95,9 +93,5 @@
   </form>
 </div>
 
-<script type="text/javascript" src="/javascripts/jquery-1.8.1.min.js"></script>
-<script type="text/javascript" src="/bui/seed-min.js"></script>
-<script type="text/javascript" src="/javascripts//main.js"></script>
-<script type="text/javascript" src="/javascripts//global.js"></script>
-<script type="text/javascript" src="/javascripts//autocomplete.js"></script>
+<% include scripts %>
 <script type="text/javascript" src="/javascripts/assets/company2.js"></script>

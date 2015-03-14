@@ -11,8 +11,7 @@
           <div class="logo span3" ></div>
           <div class="title span17" ></div>
           <div class="span4">
-            <span><%=user.userName%></span>
-            <a href="/logout">退出</a>
+            <% include userTemplate %>
           </div>
         </div>
       </div>
@@ -148,9 +147,5 @@
   </form>
 </div>
 
-<script type="text/javascript" src="/javascripts/jquery-1.8.1.min.js"></script>
-<script type="text/javascript" src="/bui/seed-min.js"></script>
-<script type="text/javascript" src="/javascripts//main.js"></script>
-<script type="text/javascript" src="/javascripts//global.js"></script>
-<script type="text/javascript" src="/javascripts//autocomplete.js"></script>
+<% include scripts %>
 <script type="text/javascript" src="/javascripts/assets/user.js"></script>

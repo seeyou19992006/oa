@@ -13,12 +13,12 @@
     </div>
     <div style="float:right;height:100px;">
       <div id="user">
-        <span><%=user.userName%></span>
-        <a href="/logout">退出</a>
+        <% include userTemplate %>
       </div>
       <ul id="menu">
         <li><a href="/users/user2">员工管理</a> </li>
         <li><a href="/statistics">统计信息</a> </li>
+        <li><a href="/statistics/customer">客户统计</a></li>
       </ul>
     </div>
   </div>

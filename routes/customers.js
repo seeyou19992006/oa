@@ -138,6 +138,30 @@ router.get('/find/company',function(req,res,next) {
   });
 })
 
+router.get('/find/changeUser',function(req,res,next) {
+
+  var param = {
+    userId:req.query.fromUserId,
+    //customerName:new RegExp(req.query.customerName),
+    //customerType:req.query.customerType,
+  }
+  if(!param.customerType){
+    delete param.customerType;
+  }
+  var query = new Query({
+    param:param,
+    model:CustomerModel,
+    page:req.query
+  })
+  query.query(function(err,result){
+    if(err){
+
+    }else{
+      res.send(result);
+    }
+  });
+})
+
 router.get('/find/companyStatistics',function(req,res,next) {
 
   var param = {
@@ -179,5 +203,59 @@ router.get('/find/companyStatistics',function(req,res,next) {
 router.get('/get',function(req,res,next) {
   res.send('get');
 })
+
+router.post('/changeAll',function(req,res,next) {
+  var fromUserId = req.body.fromUserId;
+  var toUserId = req.body.toUserId;
+  if(!toUserId){
+    res.send({
+      msg:'无目标员工',
+      ret:false
+    });
+    return
+  }
+  CustomerModel.update({
+    userId:fromUserId
+  },{
+    $set:{
+      userId:toUserId
+    }
+  },{
+    multi:true
+  },function(err,count){
+    console.log(count);
+    res.send({
+      ret:true,
+    });
+  })
+})
+
+router.post('/changeSelection',function(req,res,next) {
+  var customerIds = req.body.customerIds;
+  var toUserId = req.body.toUserId;
+  if(!toUserId){
+    res.send({
+      msg:'无目标员工',
+      ret:false
+    });
+    return
+  }
+  CustomerModel.update({
+    _id:{$in:customerIds}
+  },{
+    $set:{
+      userId:toUserId
+    }
+  },{
+    multi:true
+  },function(err,count){
+    console.log(count);
+    res.send({
+      ret:true,
+    });
+  })
+})
+
+
 
 module.exports = router;

@@ -14,6 +14,49 @@ router.get('/user2', function(req, res, next) {
   res.render('user2',{user:req.session.user,company:req.session.company});
 });
 
+router.post('/changePassword', function(req, res, next) {
+  var condition = {
+    userId:req.session.user.userId
+  };
+  var update = {
+    $set:{
+      password:req.body.password_new1,
+    }
+  };
+  UserModel.findOne(condition,function(err,doc){
+    if(doc.password == req.body.password_old){
+      UserModel.update(condition,update,function(err,docs){
+        if(!err){
+          req.session.user.password = req.body.password_new1;
+          req.session.user.changePasswordCount = null;
+          res.send({
+            ret:true
+          });
+        }
+      })
+    }else{
+      if(req.session.user.changePasswordCount){
+        req.session.user.changePasswordCount ++;
+      }else{
+        req.session.user.changePasswordCount = 1      
+      }
+      if(req.session.user.changePasswordCount>=3){
+        req.session.user = null;
+        res.send({
+          ret:false,
+          msg:'连续3次输入错误，重新登录!',
+          action:'/'
+        });
+      }else{
+        res.send({
+          ret:false,
+          msg:'密码错误，请稍后再试!'
+        });
+      };
+    }
+  })  
+});
+
 router.post('/add/user',function(req,res,next) {
   var record = req.body;
   if(record.role==0||record.role==1){

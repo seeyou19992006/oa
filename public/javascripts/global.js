@@ -59,21 +59,52 @@ Global.setEditValue = function(parent,record){
       }
     }
   })
+};
+
+function $ajax(url, obj,callback) {
+  $.ajax({
+    url: url,
+    type: "POST",
+    data: JSON.stringify(obj),
+    dataType: 'json',
+    contentType: "application/json",
+    success: function(data){
+      callback(data)
+    },
+    error: function (data) {
+    }
+  });
 }
 
-//时间格式化
-Date.prototype.format = function (fmt) { //author: meizz 
-var o = {
-    "M+": this.getMonth() + 1, //月份 
-    "d+": this.getDate(), //日 
-    "h+": this.getHours(), //小时 
-    "m+": this.getMinutes(), //分 
-    "s+": this.getSeconds(), //秒 
-    "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
-    "S": this.getMilliseconds() //毫秒 
-};
-if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
-for (var k in o)
-if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
-return fmt;
-}
+BUI.use(['bui/overlay','bui/form','bui/data'],function(Overlay,Form,Data){
+    var dialogChangePassword = new Overlay.Dialog({
+      title:'修改密码',
+      contentId:'dialog_chang_password',
+      width:200,
+      success:function(){
+        formChangePassword.valid();
+        if(!formChangePassword.isValid()) return;
+        var record = formChangePassword.toObject();
+        $.post('/users/changePassword',record,function(data){
+          if(data.ret){
+            formChangePassword.clearFields();
+            formChangePassword.clearErrors();
+            dialogChangePassword.close();
+          }else{
+            BUI.Message.Alert(data.msg);
+            if(data.action){
+              window.location.href=window.location.href;
+            }
+          }
+
+        });
+      }
+    });
+    var formChangePassword = new Form.Form({
+      srcNode:'#form_chang_password'
+    }).render();
+    $('#btn_change_password').click(function(){
+      dialogChangePassword.show(); 
+    });
+});
+

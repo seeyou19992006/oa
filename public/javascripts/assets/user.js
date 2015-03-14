@@ -139,6 +139,7 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
       }else if(target.hasClass('changeCustomer')){
         grid_customer_store.load({fromUserId:record.userId});
         changeParam.ignoreUserIds = [record.userId];
+        $("#form-search-grid-customer input").val('');
         dialog_grid_customer.show();
         return false;
       }
@@ -157,7 +158,7 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
       {title:'QQ号',dataIndex:'qqNumber'},
     ];
     var store = new Data.Store({
-      url:'/customers/find/company',
+      url:'/customers/find/changeUser',
       root:'data',
       pageSize:10,
       totalProperty:'total',
@@ -180,6 +181,45 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
     $("#form-search-grid-customer").submit(function(){
       store.load($(this).toObject());
       return false;
+    })
+
+    $("#btnChangeSelection").click(function(){
+      var records = grid.getSelection();
+      var toUserId = $("#form-search-grid-customer").toObject().toUserId;
+      var customerIds = [];
+
+      for(var i = 0 ; i < records.length ; i ++){
+        customerIds.push(records[i]._id);
+      }
+      if(!toUserId){
+        BUI.Message.Alert('请先选择目的员工!','warning');
+        return;
+      }
+      var obj = {
+        customerIds:customerIds,
+        toUserId:toUserId,
+      }
+      $ajax('/customers/changeSelection',obj,function(data){
+        store.load({start:0});
+      })
+      console.log(records);
+    })
+    $("#btnChangeAll").click(function(){
+      var formResult = $("#form-search-grid-customer").toObject()
+      var toUserId = formResult.toUserId;
+      if(!toUserId){
+        BUI.Message.Alert('请先选择目的员工!','warning');
+        return;
+      }
+      var obj = {
+        fromUserId:changeParam.ignoreUserIds[0],
+        toUserId:toUserId,
+      }
+      BUI.Message.Confirm('你确定要转移该员工所有客户到 <span class="color-red">'+formResult.toUserName+'</span> 名下吗？',function(){
+        $ajax('/customers/changeAll',obj,function(data){
+          store.load({start:0});
+        })
+      })
     })
   })();
 

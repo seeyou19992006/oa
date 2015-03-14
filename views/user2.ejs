@@ -14,8 +14,7 @@
     </div>
     <div style="float:right;height:100px;">
       <div id="user">
-        <span><%=user.userName%></span>
-        <a href="/logout">退出</a>
+        <% include userTemplate %>
       </div>
       <ul id="menu">
         <li><a href="/users/user2">员工管理</a> </li>
@@ -163,17 +162,19 @@
       <div class="control-group span7">
         <label class="control-label">转移给</label>
         <div class="controls">
-          <input type="text" id="toUserId"  class="control-text">
+          <input type="text" name="toUserName" id="toUserId"  class="control-text">
         </div>
+      </div>
+      <div class="form-actions span4">
+        <button id="btnChangeSelection" type="button" class="button button-primary">转移选中</button>
+      </div>
+      <div class="form-actions span4">
+        <button id="btnChangeAll" type="button" class="button button-primary">转移全部</button>
       </div>
     </form>
   </div>
   <div class="row" id="grid_customer"></div>
 </div>
 
-<script type="text/javascript" src="/javascripts/jquery-1.8.1.min.js"></script>
-<script type="text/javascript" src="/bui/seed-min.js"></script>
-<script type="text/javascript" src="/javascripts//main.js"></script>
-<script type="text/javascript" src="/javascripts//global.js"></script>
-<script type="text/javascript" src="/javascripts//autocomplete.js"></script>
+<% include scripts %>
 <script type="text/javascript" src="/javascripts/assets/user.js"></script>
