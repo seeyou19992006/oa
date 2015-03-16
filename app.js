@@ -13,7 +13,7 @@ var settings = require('./settings');
 require('./dateFormat');
 
 global.mongoose = require('mongoose');
-global.db = mongoose.createConnection('localhost','oa');
+global.db = mongoose.createConnection('mongodb://tony:abc123@localhost:27017/oa');
 global.Query = require('./models/query.js');
 global._ = require('underscore');
 global.moment = require('moment');
