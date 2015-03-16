@@ -75,16 +75,31 @@ router.post('/update',function(req,res,next) {
   CustomerModel.findOne(condition,function(err,doc){
     if(doc.userId==req.session.user.userId){
       CustomerModel.update(condition,update,function(err,docs){
-        res.send('update success');
+        res.send({ret:true});
       })
     }else{
-      res.send('无权限!');
+      res.send({ret:false,msg:'无权限!'});
     }
   })
 })
 
-router.get('/delete',function(req,res,next) {
-  res.send('delete');
+router.post('/delete',function(req,res,next) {
+  var condition = {
+    _id:req.body._id
+  }
+  CustomerModel.findOne(condition,function(err,doc){
+    if(doc.userId == req.session.user.userId){
+      CustomerModel.remove(condition,function(err,count){
+        if(!err){
+          res.send({ret:true});
+        }else{
+          res.send({ret:false,msg:'添加失败，请联系管理人员'});
+        }
+      })
+    }else{
+      res.send({ret:false,msg:'无权限!'});
+    }
+  })
 })
 
 router.get('/find',function(req,res,next) {
