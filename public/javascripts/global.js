@@ -76,7 +76,7 @@ function $ajax(url, obj,callback) {
   });
 }
 
-BUI.use(['bui/overlay','bui/form','bui/data'],function(Overlay,Form,Data){
+BUI.use(['bui/overlay','bui/form','bui/data','bui/grid'],function(Overlay,Form,Data,Grid){
     var dialogChangePassword = new Overlay.Dialog({
       title:'修改密码',
       contentId:'dialog_chang_password',
@@ -106,5 +106,57 @@ BUI.use(['bui/overlay','bui/form','bui/data'],function(Overlay,Form,Data){
     $('#btn_change_password').click(function(){
       dialogChangePassword.show(); 
     });
+
+
+    var dialogSearchCustomer = new Overlay.Dialog({
+      title:'客户预查',
+      contentId:'dialog_search_customer',
+      width:700,
+      success:function(){
+        grid.clearData();
+        dialogSearchCustomer.close();
+      }
+    });
+    var formSearchCustomer = new Form.Form({
+      srcNode:'#form_search_customer'
+    }).render();
+
+    var store = new Data.Store({
+      url:'/customers/find/preview',
+      root:'data',
+      pageSize:10,
+      totalProperty:'total',
+      autoLoad:false
+    });
+    var columns = [
+      {title:'客户姓名',dataIndex:'customerName'},
+      {title:'性别',dataIndex:'sex',renderer:Global.sexRenderer},
+      {title:'手机',dataIndex:'cellPhone',width:200},
+      {title:'QQ号',dataIndex:'qqNumber'},
+      {title:'添加人Id',dataIndex:'userId'},
+    ];
+    var grid = new Grid.Grid({
+      width:'100%',
+      render:'#grid_search_customer',
+      columns:columns,
+      forceFit:false,
+      store:store,
+    });
+    grid.render();
+    $('#btn_show_dialog_search_customer').click(function(){
+      dialogSearchCustomer.show();
+    })
+    window.store1 = store;
+    window.grid1 = grid;
+    $('#btn_search_customer').click(function(){
+      store.load(formSearchCustomer.toObject());
+      // $.get('/customers/find/preview',formSearchCustomer.toObject(),function(data){
+      //   var customer = data.data[0];
+      //   if(customer){
+      //     Global.setEditValue('#div_show_result_search_customer',customer);
+      //   }
+      // })
+    })
+
 });
 

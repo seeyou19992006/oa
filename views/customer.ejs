@@ -1,41 +1,38 @@
 <html>
-<head>
-  <title>statistics</title>
-  <link rel="stylesheet" type="text/css" href="/bui/css/bs3/bui-min.css">
-  <link rel="stylesheet" type="text/css" href="/bui/css/bs3/dpl-min.css">
-  <link rel='stylesheet' type="text/css" href='/stylesheets/style.css' />
-</head>
-<body>
-  <div class="header">
-    <div style="float:left;width:400px">
-      <img height='100%' src="/images/logo.png">
-      <label class="title">万和数据OA系统</label>
-    </div>
-    <div style="float:right;height:100px;">
-      <div id="user">
-        <% include userTemplate %>
+  <head>
+    <title>Company Manage</title>
+    <link rel="stylesheet" type="text/css" href="/bui/css/bs3/bui-min.css">
+    <link rel="stylesheet" type="text/css" href="/bui/css/bs3/dpl-min.css">
+    <link rel='stylesheet' type="text/css" href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <div  class="header row-fluid" style="background:#555;height:10%">
+      <div class="logo span3" style="height:100%">
+        <img height='100%' src="/images/logo.png">
       </div>
-      <ul id="menu">
-        <li><a href="/customers/2">客户管理</a> </li>
-        <li><a href="/statistics/user">统计信息</a> </li>
-      </ul>
+      <div class="title span17" style="height:100%"></div>
+      <div class="span4" style="height:100%">
+        <span><%=user.userName%></span>
+        <a href="/logout">退出</a>
+      </div>
     </div>
-  </div>
-  <div class="wrap">
-    <div class="search-bar">
-      <form id="form-search" class="form-horizontal">
-          <div class="row">
-            <div class="control-group span7">
-              <label class="control-label">客户姓名</label>
-              <div class="controls">
-                <input type="text" name="customerName"  class="control-text">
-              </div>
-            </div>
-            <div class="control-group span8">
-              <label class="control-label">客户类型</label>
-              <div class="controls">
+    <div style="height:90%" class="context clearfix row-fluid" >
+
+      <div class="left span3" style="height:100%">
+        <ul class="clearfix" id="nav">
+          <li><a href="/customers">客户管理</a> </li>
+          <li><a href="/statistics">统计信息</a> </li>
+        </ul>
+      </div>
+
+      <div class="span18" style="">
+        <div class="row-fluid">
+          <div class="span24">
+            <div class="">
+              <form id="form_search">
+                <label class="span">客户姓名:</label><input class="span" type="text" name="customerName">
+                <label class="span">客户类型:</label>
                 <select name="customerType"  class="span">
-                  <option value="">所有</option>
                   <option value='1'>准客户</option>
                   <option value='2'>沟通潜力客户</option>
                   <option value='3'>一般客户</option>
@@ -43,23 +40,25 @@
                   <option value='5'>成交客户</option>
                   <option value='6'>黑名单</option>
                 </select>
-              </div>
+                <button  class="span button button-primary">查找</button>
+              </form>
+              <ul class="toolbar " style="float:right">
+                <li><button  id="btn_search_customer" class="button button-primary"><span class="x-icon x-icon-success"><i class="icon icon-search icon-white"></i></span></button></li>
+                <li><button  id="btn_add_customer" class="button button-primary">+</button></li>
+              </ul>
             </div>
-            <div class="form-actions span4">
-              <button id="btnSearch" type="submit" class="button button-primary">搜索</button>
-            </div>
-            <ul class="toolbar " style="float:right">
-              <li><button type="button"  id="btn_show_dialog_search_customer" class="button button-primary"><span class="x-icon"><i class="icon icon-search icon-white"></i></span></button></li>
-              <li><button type="button"  id="btn_add_customer" class="button button-primary"><span class="x-icon"><i class="icon  icon-plus icon-large icon-white"></i></span></button></li>
-            </ul>
           </div>
-      </form>
+        </div>
+
+        <div class="row-fluid">
+          <div class="span24">
+            <div id='grid'></div>
+          </div>
+        </div>
+
+      </div>
     </div>
-    <div class="row-fluid">
-      <div id='grid'></div>
-    </div>
-  </div>
-</body>
+  </body>
 </html>
 
 <div id="dialog_add_customer" class="hide">
@@ -274,7 +273,7 @@
       <div class="span12">
         <span class="span8">地址:</span>
         <span class="span14">
-          <input type="text" name="address" class="span22">
+          <input type="text" name="updateress" class="span22">
         </span>
       </div>
     </div>
@@ -317,10 +316,10 @@
 
     <div class="row-fluid">
       <div class="span24">
-        <span class="span3">跟踪类型:</span>
+        <span class="span3">跟踪内容:</span>
         <span class="span14">
           <select name="traceType">
-            <option value="1" selected>电话跟踪</option>
+            <option value="1">电话跟踪</option>
             <option value="2">视频跟踪</option>
           </select>
         </span>
@@ -341,7 +340,6 @@
 <div id="dialog_grid_trace_record" class="hide">
   <div id="grid_trace_record"></div>
 </div>
-
 
 <% include scripts %>
 <script type="text/javascript" src="/javascripts/assets/customer.js"></script>

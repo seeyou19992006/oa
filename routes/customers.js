@@ -153,6 +153,30 @@ router.get('/find/company',function(req,res,next) {
   });
 })
 
+router.get('/find/preview',function(req,res,next) {
+  var param = {}
+  if(req.query.cellPhone){
+    param.cellPhone = req.query.cellPhone;
+  }else if(req.query.qqNumber){
+    param.qqNumber = req.query.qqNumber;
+  }
+  var query = new Query({
+    param:param,
+    model:CustomerModel,
+    page:{
+      start:0,
+      limit:1
+    }
+  })
+  query.query(function(err,result){
+    if(err){
+
+    }else{
+      res.send(result);
+    }
+  });
+})
+
 router.get('/find/changeUser',function(req,res,next) {
 
   var param = {
