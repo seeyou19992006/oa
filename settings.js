@@ -1,5 +1,5 @@
 module.exports = {
 cookieSecret: 'oa11',
 db: 'oa',
-host: 'localhost',
+host: 'mongodb://tony:abc123@localhost:27017/oa',
 };
