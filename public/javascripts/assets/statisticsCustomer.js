@@ -7,13 +7,15 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
   (function(){
     var columns = [
       {title:'客户姓名',dataIndex:'customerName'},
+      {title:'员工ID',dataIndex:'userId'},
       {title:'资金量',dataIndex:'money'},
       {title:'客户类型',dataIndex:'customerType',renderer:Global.customerTypeRenderer},
       {title:'性别',dataIndex:'sex',renderer:Global.sexRenderer},
-      {title:'手机',dataIndex:'cellPhone'},
+      {title:'手机',dataIndex:'cellPhone',width:150},
       {title:'QQ号',dataIndex:'qqNumber'},
       {title:'昵称',dataIndex:'nickname'},
       {title:'身份证',dataIndex:'idCard'},
+      {title:'最后跟踪时间',dataIndex:'traceTime',width:200},
       {title:'操作',renderer:function(){
         return    '<span class="grid-command showRecord" title="查看跟踪">'           
               +     '<span class="x-icon x-icon-info showRecord">'              

@@ -117,7 +117,7 @@ router.get('/find',function(req,res,next) {
     model:CustomerModel,
     page:req.query,
     sort:{
-      _id:-1
+      traceTime:1
     }
   })
   query.query(function(err,result){
@@ -228,7 +228,10 @@ router.get('/find/companyStatistics',function(req,res,next) {
   var query = new Query({
     param:param,
     model:CustomerModel,
-    page:req.query
+    page:req.query,
+    sort:{
+      traceTime:1
+    }
   })
   query.query(function(err,result){
     if(err){

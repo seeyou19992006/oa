@@ -43,11 +43,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(flash());
 
 app.use(session({
-  cookie: { maxAge: 20 * 6 * 60 * 1000 },
+  cookie: { maxAge: 2 * 60 * 60 * 1000   },
   secret: settings.cookieSecret,
   store: new MongoStore({
       db: settings.db,
-  })
+  }),
 }));
 
 var ignoreArray = [
@@ -59,6 +59,7 @@ app.use(function(req,res,next){
   if(!req.session.user && ignoreArray.indexOf(req.originalUrl) < 0 ){
     res.redirect('/');
   }else{
+    console.log(req.session.cookie.expires);
     next();
   }
 });

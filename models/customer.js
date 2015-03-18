@@ -17,6 +17,7 @@ var CustomerSchema = new mongoose.Schema({
   companyId:Number,
   userPath:String,
   createTime:String,
+  traceTime:String
 })
 
 var CustomerModel = db.model('customer',CustomerSchema);

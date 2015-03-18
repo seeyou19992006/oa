@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var TraceRecordModel = require('../models/traceRecord');
+var CustomerModel = require('../models/customer');
 /* GET traceRecords listing. */
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
@@ -13,8 +14,12 @@ router.post('/add',function(req,res,next) {
   record.companyId = req.session.user.companyId;
   var entity = new TraceRecordModel(record);
   entity.save(function(err,result){
+      CustomerModel.findOneAndUpdate({_id:record.customerId},{'$set':{traceTime:record.traceTime}},function(err,doc){
+        res.send({
+          ret:true
+        })
+      });
   });
-  res.send('add');
 })
 
 router.get('/update',function(req,res,next) {
