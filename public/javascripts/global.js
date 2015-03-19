@@ -34,6 +34,9 @@ Global.roleRender = function(value,obj,index){
 Global.traceTypeRenderer = function(value,obj,index){
   return Global.traceType[value];
 }
+Global.qqRender = function(value,obj,index){
+   return '<a href="tencent://message/?uin='+value+'" target="_blank">'+value+'</a>'
+}
 
 
 Global.setEditValue = function(parent,record){

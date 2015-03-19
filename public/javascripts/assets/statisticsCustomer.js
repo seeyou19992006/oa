@@ -29,7 +29,12 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
       root:'data',
       pageSize:100,
       totalProperty:'total',
-      autoLoad:true
+      autoLoad:true,
+      sortInfo : {
+        field : 'traceTime',
+        direction : 'ASC' //升序ASC，降序DESC
+      },
+      remoteSort: true
     });
     grid = new Grid.Grid({
       width:'100%',

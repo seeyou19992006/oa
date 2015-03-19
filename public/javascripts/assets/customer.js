@@ -42,7 +42,7 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
       {title:'客户类型',dataIndex:'customerType',renderer:Global.customerTypeRenderer},
       {title:'性别',dataIndex:'sex',renderer:Global.sexRenderer},
       {title:'手机',dataIndex:'cellPhone',width:150},
-      {title:'QQ号',dataIndex:'qqNumber'},
+      {title:'QQ号',dataIndex:'qqNumber',renderer:Global.qqRender},
       {title:'昵称',dataIndex:'nickname'},
       {title:'身份证',dataIndex:'idCard'},
       {title:'最后跟踪时间',dataIndex:'traceTime',width:200},
@@ -74,7 +74,12 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
       root:'data',
       pageSize:100,
       totalProperty:'total',
-      autoLoad:true
+      autoLoad:true,
+      sortInfo : {
+        field : 'traceTime',
+        direction : 'ASC' //升序ASC，降序DESC
+      },
+      remoteSort: true
     });
     grid = new Grid.Grid({
       width:'100%',

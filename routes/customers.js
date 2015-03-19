@@ -112,13 +112,15 @@ router.get('/find',function(req,res,next) {
   if(!param.customerType){
     delete param.customerType;
   }
+  var sort = {};
+  sort[req.query.field]  = (req.query.direction == 'ASC'?  1:-1 );
+  console.log(sort);
+  console.log(req.query.direction);
   var query = new Query({
     param:param,
     model:CustomerModel,
     page:req.query,
-    sort:{
-      traceTime:1
-    }
+    sort:sort
   })
   query.query(function(err,result){
     if(err){
@@ -225,13 +227,13 @@ router.get('/find/companyStatistics',function(req,res,next) {
   if(!param.customerType){
     delete param.customerType;
   }
+  var sort = {};
+  sort[req.query.field]  = (req.query.direction == 'ASC'?  1:-1 );
   var query = new Query({
     param:param,
     model:CustomerModel,
     page:req.query,
-    sort:{
-      traceTime:1
-    }
+    sort:sort
   })
   query.query(function(err,result){
     if(err){
