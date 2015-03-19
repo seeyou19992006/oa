@@ -27,7 +27,7 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
     store = new Data.Store({
       url:'/customers/find/companyStatistics',
       root:'data',
-      pageSize:10,
+      pageSize:100,
       totalProperty:'total',
       autoLoad:true
     });
