@@ -13,5 +13,11 @@ var id = {
     "id": 1,
     "name": "company"
 }
-db.users.add(user);
-db.ids.add(id);
+var company = {
+  "id":1,
+  "name":'万和数据',
+  "path":'/1'
+}
+db.companies.insert(company);
+db.users.insert(user);
+db.ids.insert(id);

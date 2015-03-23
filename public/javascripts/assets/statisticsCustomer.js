@@ -17,7 +17,11 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
       {title:'身份证',dataIndex:'idCard'},
       {title:'最后跟踪时间',dataIndex:'traceTime',width:200},
       {title:'操作',renderer:function(){
-        return    '<span class="grid-command showRecord" title="查看跟踪">'           
+        return    '<span class="grid-command update" title="编辑客户">'           
+              +     '<span class="x-icon x-icon-warning update">'              
+              +       '<i class="icon icon-white icon-edit update"></i>'   
+              +   '</span>'
+              +   '<span class="grid-command showRecord" title="查看跟踪">'           
               +     '<span class="x-icon x-icon-info showRecord">'              
               +       '<i class="icon icon-white icon-eye-open showRecord"></i>'   
               +     '</span>'                                          
@@ -94,6 +98,11 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
           dialogShowTraceRecord.show();
         })
         return false;
+      }else if(target.hasClass('update')){
+        Global.setEditValue('#form_update_customer',record);
+        formUpdateCustomer.setRecord(record);
+        dialogUpdateCustomer.show();
+        return false;
       }
     })
   })();
@@ -125,6 +134,31 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
       }
     }),
   });
+
+  var dialogUpdateCustomer;
+  var formUpdateCustomer;
+  (function(){
+    dialogUpdateCustomer = new Overlay.Dialog({
+      title:'编辑客户',
+      contentId:'dialog_update_customer',
+      width:700,
+      success:function(){
+        formUpdateCustomer.valid();
+        if(!formUpdateCustomer.isValid()) return;
+        var record = formUpdateCustomer.toObject();
+        $.post('/customers/update',record,function(data){
+          console.log(data);
+          store.load();
+          formUpdateCustomer.clearFields();
+          formUpdateCustomer.clearErrors();
+          dialogUpdateCustomer.close();
+        });
+      }
+    });
+    formUpdateCustomer = new Form.Form({
+      srcNode:'#form_update_customer'
+    }).render();
+  })();
 
 
 })

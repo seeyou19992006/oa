@@ -73,7 +73,7 @@ router.post('/update',function(req,res,next) {
     }
   }
   CustomerModel.findOne(condition,function(err,doc){
-    if(doc.userId==req.session.user.userId){
+    if(doc.userId==req.session.user.userId ||(req.session.user.role==1&& doc.companyId==req.session.user.companyId)){
       CustomerModel.update(condition,update,function(err,docs){
         res.send({ret:true});
       })
@@ -103,14 +103,17 @@ router.post('/delete',function(req,res,next) {
 })
 
 router.get('/find',function(req,res,next) {
-
+  if(req.query.customerType == 5 ||!req.query.customerType){
+    req.query.customerType = [1,2,3,4,6];
+  }else{
+    req.query.customerType = [req.query.customerType];
+  }
   var param = {
     userId:req.session.user.userId,
     customerName:new RegExp(req.query.customerName),
-    customerType:req.query.customerType,
-  }
-  if(!param.customerType){
-    delete param.customerType;
+    customerType:{
+      $in:req.query.customerType
+    },
   }
   var sort = {};
   sort[req.query.field]  = (req.query.direction == 'ASC'?  1:-1 );

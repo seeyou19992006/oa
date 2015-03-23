@@ -1,10 +1,15 @@
-var find = require('./find'),
-    matches = require('../utility/matches');
+var baseMatches = require('../internal/baseMatches'),
+    find = require('./find');
 
 /**
  * Performs a deep comparison between each element in `collection` and the
  * source object, returning the first element that has equivalent property
  * values.
+ *
+ * **Note:** This method supports comparing arrays, booleans, `Date` objects,
+ * numbers, `Object` objects, regexes, and strings. Objects are compared by
+ * their own, not inherited, enumerable properties. For comparing a single
+ * own or inherited property value see `_.matchesProperty`.
  *
  * @static
  * @memberOf _
@@ -15,18 +20,18 @@ var find = require('./find'),
  * @example
  *
  * var users = [
- *   { 'user': 'barney', 'age': 36, 'status': 'busy' },
- *   { 'user': 'fred',   'age': 40, 'status': 'busy' }
+ *   { 'user': 'barney', 'age': 36, 'active': true },
+ *   { 'user': 'fred',   'age': 40, 'active': false }
  * ];
  *
- * _.result(_.findWhere(users, { 'status': 'busy' }), 'user');
+ * _.result(_.findWhere(users, { 'age': 36, 'active': true }), 'user');
  * // => 'barney'
  *
- * _.result(_.findWhere(users, { 'age': 40 }), 'user');
+ * _.result(_.findWhere(users, { 'age': 40, 'active': false }), 'user');
  * // => 'fred'
  */
 function findWhere(collection, source) {
-  return find(collection, matches(source));
+  return find(collection, baseMatches(source));
 }
 
 module.exports = findWhere;

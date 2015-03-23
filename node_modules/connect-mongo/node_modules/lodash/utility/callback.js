@@ -1,11 +1,14 @@
 var baseCallback = require('../internal/baseCallback'),
-    isIterateeCall = require('../internal/isIterateeCall');
+    isIterateeCall = require('../internal/isIterateeCall'),
+    isObjectLike = require('../internal/isObjectLike'),
+    matches = require('./matches');
 
 /**
- * Creates a function bound to an optional `thisArg`. If `func` is a property
- * name the created callback returns the property value for a given element.
- * If `func` is an object the created callback returns `true` for elements
- * that contain the equivalent object properties, otherwise it returns `false`.
+ * Creates a function that invokes `func` with the `this` binding of `thisArg`
+ * and arguments of the created function. If `func` is a property name the
+ * created callback returns the property value for a given element. If `func`
+ * is an object the created callback returns `true` for elements that contain
+ * the equivalent object properties, otherwise it returns `false`.
  *
  * @static
  * @memberOf _
@@ -29,7 +32,9 @@ var baseCallback = require('../internal/baseCallback'),
  *     return callback(func, thisArg);
  *   }
  *   return function(object) {
- *     return match[2] == 'gt' ? object[match[1]] > match[3] : object[match[1]] < match[3];
+ *     return match[2] == 'gt'
+ *       ? object[match[1]] > match[3]
+ *       : object[match[1]] < match[3];
  *   };
  * });
  *
@@ -40,7 +45,9 @@ function callback(func, thisArg, guard) {
   if (guard && isIterateeCall(func, thisArg, guard)) {
     thisArg = null;
   }
-  return baseCallback(func, thisArg);
+  return isObjectLike(func)
+    ? matches(func)
+    : baseCallback(func, thisArg);
 }
 
 module.exports = callback;
