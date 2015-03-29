@@ -159,7 +159,6 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
       columns:columns,
       store:store,
       width:750,
-      tableCls:'min-height',
       bbar:{
         pagingBar:true
       }

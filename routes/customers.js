@@ -104,7 +104,7 @@ router.post('/delete',function(req,res,next) {
 
 router.get('/find',function(req,res,next) {
   if(req.query.customerType == 5 ||!req.query.customerType){
-    req.query.customerType = [1,2,3,4,6];
+    req.query.customerType = [1,2,3,4];
   }else{
     req.query.customerType = [req.query.customerType];
   }
