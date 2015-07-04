@@ -195,13 +195,6 @@ BUI.use(['bui/overlay','bui/form','bui/tree','bui/data','bui/menu','bui/grid'],f
         formUpdateCustomer.setRecord(record);
         dialogUpdateCustomer.show();
         return false;
-      }else if(target.hasClass('delete')){
-        BUI.Message.Confirm('确定要删除?',function(){
-          $.post('/customers/delete',{_id:record._id},function(data){
-            store.load();
-          })       
-        })
-        return false;
       }
     })
   })();
