@@ -186,7 +186,7 @@ router.post('/find/autocomplete',function(req,res,next) {
     req.body.ignoreUserIds = []
   }
   var param = {
-    userName: new RegExp(req.body.userName),
+    userName: new RegExp(req.body.name),
     companyId:req.session.user.companyId,
     role:2,
     userId:{
@@ -196,7 +196,7 @@ router.post('/find/autocomplete',function(req,res,next) {
   var query = new Query({
     param:param,
     model:UserModel,
-    page:req.query
+    page:req.body
   })
   query.query(function(err,result){
     if(err){
